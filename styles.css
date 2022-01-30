@@ -1,0 +1,339 @@
+@charset "UTF-8";
+
+/* Police d'ecriture */
+@font-face {
+    font-family: "Haas Grotesk Med";
+    src: url("/fonts/NHaasGroteskTXPro-65Md.ttf") format("truetype");
+}
+
+/* Style par defaut */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: rgb(235, 173, 123);
+    --main-color: #f2f8f5;
+    --main-text-color: black;
+    --sub-title-color: grey;
+    --label : rgb(29, 119, 180);
+    --main-style-color: #e55126;
+    --item-bg-color : white;
+    --shadow-color : rgba(5,15,31,0.16);
+    --shadow_style_left : 0px 0px 50px 0 var(--shadow-color);
+    --shadow_style_right : 0px 0px 50px 0 var(--shadow-color);
+}
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: rgb(235, 173, 123);
+        --main-color: #1d1d1d;
+        --main-text-color: white;
+        --sub-title-color: grey;
+        --label : rgb(29, 119, 180);
+        --main-style-color: #e55126;
+        --item-bg-color: #232323;
+        
+        --shadow-color : rgba(95, 95, 95, 0.16);
+    }
+} */
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    border: 0;
+    margin: 0;
+}
+
+main {
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--main-color);
+}
+
+h1 {
+    margin-left: 100px;
+    margin-bottom: 50px;
+    font-size: 85px;
+}
+
+img{
+    width: 50%;
+    border-radius: 18px;
+    object-fit: cover;
+}
+
+a {
+    font-style: normal;
+    text-decoration: none;
+}
+/* Gestion du menu */
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: var(--item-bg-color);
+    box-shadow : 0px 7px 25px 0 var(--shadow-color);
+}
+
+nav > div {
+    height: 100%;
+    width: 100px;
+}
+
+nav > div > img {
+    margin : 5px;
+    height: 100%;
+    width: auto;
+}
+
+nav > ol {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 500px;
+    height: 100%;
+    margin-left: calc(100% - 600px);
+}
+
+nav > ol > li {
+    height: 100%;
+    padding: 12px;
+    
+    list-style: none;
+    font-size: 18px;
+    color: var(---sub-title-color);
+}
+
+.selected_article {
+    color : var(--main-style-color);
+    border-bottom: 2.5px solid var(--main-style-color);
+}
+
+nav > ol > li:hover{
+    color : var(--main-style-color);
+    border-bottom: 2.5px solid var(--main-style-color);
+}
+
+
+
+
+/* ///////////////////////////////////////////////////////////// */
+/* ////////////////////// Page d'acceuil ////////////////////// */
+/* /////////////////////////////////////////////////////////// */
+
+
+.page_acceuil a {
+    color : var(---main-text-color);
+}
+
+.main_article {
+    margin: auto;
+    margin-bottom: 30px;
+    width: 85%;
+    padding : 15px;
+    border-radius : 25px;
+    box-shadow: var(--shadow_style_left);
+}
+
+.main_article a {
+    display: flex;
+    width : 100%;
+    height : 100%;
+}
+
+.main_article > a > img {
+    box-shadow: var(--shadow_style_left);
+    width : 50%;
+}
+
+.main_article div {
+    width: 48%;
+    margin-left: 12px;
+    padding : 15px;
+}
+
+.main_article div > span {
+    font-size: 16px;
+    color: var(---section-sub-color);
+}
+
+.main_article  div > h3 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.main_article  div > p {
+    padding-top: 10px;
+    font-size: 19px;
+}
+
+/* Sous Article  */
+
+.container {
+    margin: auto;
+    width: 88%;
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    justify-items: center;
+    
+}
+
+.sous_article {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 30px;
+    border-radius : 25px;
+    box-shadow: var(--shadow_style_left);
+}
+
+.sous_article img{
+    width: 95%;
+}
+
+.sous_article a {
+    margin-left : 15px;
+    margin-top : 15px;
+    display : block;
+}
+
+.sous_article > a > span {
+    font-size: 12px;
+    color: var(--sub-title-color);
+}
+
+.sous_article > a > h3 {
+    font-size: 22px;
+    width : 80%;
+}
+.sous_article > a > p {
+    font-size: 13px;
+    width : 80%;
+}
+
+/* Article principale */
+
+h1, .article_title, .citation, nav {
+    color: var(--main-text-color);
+}
+
+ol {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.article_title_label {
+    font-size: 16px;
+    color: #3c96ff;
+}
+
+.article_title {
+    font-size: 32px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600
+}
+
+.article_title_infos {
+    font-size: 16px;
+    color: var(--sub-title-color);
+}
+
+.article {
+    font-size: 18px;
+    max-width: 752px;
+    margin: 0 auto;
+}
+
+
+
+.citation {
+    width : 90%;
+    margin : auto;
+    padding: 40px 32px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: var(--shadow_style_left);
+    font-size: 16px;
+    border-left: 4px solid var(--main-style-color);
+    background: var(--item-bg-color);
+}
+
+.sommaire {
+    border-radius: 32px;
+    background-color: var(--main-color);
+    padding: 32px;
+    margin-top: 24px;
+}
+
+.sommaire h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--main-text-color);
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+
+.article_main {
+    overflow-wrap: break-word;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    color: var(--main-text-color);
+    font-weight: 400;
+    scroll-behavior: smooth;
+
+}
+
+.article_main h2 {
+    margin-top: 40px;
+}
+
+
+
+
+
+.teste {
+    display: block;
+    background-color: black;
+    width: 100px;
+    height: 50px;
+    color: white;
+}
+
+.teste::before{
+    content: '21';
+    animation: test 2s;
+}
+
+.teste{
+    position: fixed;
+    content: '000';
+    animation: test 2s;
+}
+
+.teste::after{
+    content: '000';
+    animation: test 2s;
+}
+
+
+@keyframes test {
+    0.0% {content : '000' ;} 
+        0.5% {content : '003' ;} 1.0% {content : '006' ;} 1.5% {content : '009' ;} 2.0% {content : '012' ;} 2.5% {content : '017' ;} 3.0% {content : '022' ;} 3.5% {content : '027' ;} 4.0% {content : '032' ;} 4.5% {content : '037' ;} 5.0% {content : '042' ;} 5.5% {content : '047' ;} 6.0% {content : '052' ;} 6.5% {content : '057' ;} 7.0% {content : '062' ;} 7.5% {content : '067' ;} 8.0% {content : '072' ;} 8.5% {content : '077' ;} 9.0% {content : '082' ;} 9.5% {content : '087' ;} 10.0% {content : '092' ;} 10.5% {content : '097' ;} 11.0% {content : '102' ;} 11.5% {content : '109' ;} 12.0% {content : '116' ;} 12.5% {content : '123' ;} 13.0% {content : '130' ;} 13.5% {content : '137' ;} 14.0% {content : '144' ;} 14.5% {content : '151' ;} 15.0% {content : '158' ;} 15.5% {content : '165' ;} 16.0% {content : '172' ;} 16.5% {content : '179' ;} 17.0% {content : '186' ;} 17.5% {content : '193' ;} 18.0% {content : '200' ;} 18.5% {content : '207' ;} 19.0% {content : '214' ;} 19.5% {content : '221' ;} 20.0% {content : '228' ;} 20.5% {content : '235' ;} 21.0% {content : '242' ;} 21.5% {content : '249' ;} 22.0% {content : '256' ;} 22.5% {content : '263' ;} 23.0% {content : '270' ;} 23.5% {content : '277' ;} 24.0% {content : '284' ;} 24.5% {content : '291' ;} 25.0% {content : '298' ;} 25.5% {content : '305' ;} 26.0% {content : '312' ;} 26.5% {content : '319' ;} 27.0% {content : '326' ;} 27.5% {content : '333' ;} 28.0% {content : '340' ;} 28.5% {content : '347' ;} 29.0% {content : '354' ;} 29.5% {content : '361' ;} 30.0% {content : '368' ;} 30.5% {content : '375' ;} 31.0% {content : '382' ;} 31.5% {content : '389' ;} 32.0% {content : '396' ;} 32.5% {content : '403' ;} 33.0% {content : '410' ;} 33.5% {content : '417' ;} 34.0% {content : '424' ;} 34.5% {content : '431' ;} 35.0% {content : '438' ;} 35.5% {content : '445' ;} 36.0% {content : '452' ;} 36.5% {content : '459' ;} 37.0% {content : '466' ;} 37.5% {content : '473' ;} 38.0% {content : '480' ;} 38.5% {content : '487' ;} 39.0% {content : '494' ;} 39.5% {content : '501' ;} 40.0% {content : '508' ;} 40.5% {content : '515' ;} 41.0% {content : '522' ;} 41.5% {content : '529' ;} 42.0% {content : '536' ;} 42.5% {content : '543' ;} 43.0% {content : '550' ;} 43.5% {content : '557' ;} 44.0% {content : '564' ;} 44.5% {content : '571' ;} 45.0% {content : '578' ;} 45.5% {content : '585' ;} 46.0% {content : '592' ;} 46.5% {content : '599' ;} 47.0% {content : '606' ;} 47.5% {content : '613' ;} 48.0% {content : '620' ;} 48.5% {content : '627' ;} 49.0% {content : '634' ;} 49.5% {content : '641' ;} 50.0% {content : '648' ;} 50.5% {content : '655' ;} 51.0% {content : '662' ;} 51.5% {content : '669' ;} 52.0% {content : '676' ;} 52.5% {content : '683' ;} 53.0% {content : '690' ;} 53.5% {content : '697' ;} 54.0% {content : '704' ;} 54.5% {content : '711' ;} 55.0% {content : '718' ;} 55.5% {content : '725' ;} 56.0% {content : '732' ;} 56.5% {content : '739' ;} 57.0% {content : '746' ;} 57.5% {content : '753' ;} 58.0% {content : '760' ;} 58.5% {content : '767' ;} 59.0% {content : '774' ;} 59.5% {content : '781' ;} 60.0% {content : '788' ;} 60.5% {content : '795' ;} 61.0% {content : '802' ;} 61.5% {content : '809' ;} 62.0% {content : '816' ;} 62.5% {content : '823' ;} 63.0% {content : '830' ;} 63.5% {content : '837' ;} 64.0% {content : '844' ;} 64.5% {content : '851' ;} 65.0% {content : '858' ;} 65.5% {content : '865' ;} 66.0% {content : '872' ;} 66.5% {content : '879' ;} 67.0% {content : '886' ;} 67.5% {content : '893' ;} 68.0% {content : '900' ;} 68.5% {content : '907' ;} 69.0% {content : '914' ;} 69.5% {content : '921' ;} 70.0% {content : '928' ;} 70.5% {content : '935' ;} 71.0% {content : '942' ;} 71.5% {content : '949' ;} 72.0% {content : '956' ;} 72.5% {content : '963' ;} 73.0% {content : '970' ;} 73.5% {content : '977' ;} 74.0% {content : '984' ;} 74.5% {content : '991' ;} 75.0% {content : '998' ;} 75.5% {content : '000' ;} 76.0% {content : '003' ;} 76.5% {content : '006' ;} 77.0% {content : '009' ;} 77.5% {content : '012' ;} 78.0% {content : '017' ;} 78.5% {content : '022' ;} 79.0% {content : '027' ;} 79.5% {content : '032' ;} 80.0% {content : '037' ;} 80.5% {content : '042' ;} 81.0% {content : '047' ;} 81.5% {content : '052' ;} 82.0% {content : '057' ;} 82.5% {content : '062' ;} 83.0% {content : '067' ;} 83.5% {content : '072' ;} 84.0% {content : '077' ;} 84.5% {content : '082' ;} 85.0% {content : '087' ;} 85.5% {content : '092' ;} 86.0% {content : '097' ;} 86.5% {content : '102' ;} 87.0% {content : '109' ;} 87.5% {content : '116' ;} 88.0% {content : '123' ;} 88.5% {content : '130' ;} 89.0% {content : '137' ;} 89.5% {content : '144' ;} 90.0% {content : '151' ;} 90.5% {content : '158' ;} 91.0% {content : '165' ;} 91.5% {content : '172' ;} 92.0% {content : '179' ;} 92.5% {content : '186' ;} 93.0% {content : '193' ;} 93.5% {content : '200' ;} 94.0% {content : '207' ;} 94.5% {content : '214' ;} 95.0% {content : '221' ;} 95.5% {content : '228' ;} 96.0% {content : '235' ;} 96.5% {content : '242' ;} 97.0% {content : '249' ;} 97.5% {content : '256' ;} 98.0% {content : '263' ;} 98.5% {content : '270' ;} 99.0% {content : '277' ;} 99.5% {content : '284' ;} 
+    100.0% {content : '000' ;}
+}
+
+@keyframes test2 {
+    0.0% {content : '000' ;} 
+        0.5% {content : '005' ;} 1.0% {content : '010' ;} 1.5% {content : '015' ;} 2.0% {content : '020' ;} 2.5% {content : '025' ;} 3.0% {content : '030' ;} 3.5% {content : '035' ;} 4.0% {content : '040' ;} 4.5% {content : '045' ;} 5.0% {content : '050' ;} 5.5% {content : '055' ;} 6.0% {content : '060' ;} 6.5% {content : '065' ;} 7.0% {content : '070' ;} 7.5% {content : '075' ;} 8.0% {content : '080' ;} 8.5% {content : '085' ;} 9.0% {content : '090' ;} 9.5% {content : '095' ;} 10.0% {content : '100' ;} 10.5% {content : '101' ;} 11.0% {content : '102' ;} 11.5% {content : '103' ;} 12.0% {content : '104' ;} 12.5% {content : '105' ;} 13.0% {content : '106' ;} 13.5% {content : '107' ;} 14.0% {content : '108' ;} 14.5% {content : '109' ;} 15.0% {content : '110' ;} 15.5% {content : '111' ;} 16.0% {content : '112' ;} 16.5% {content : '113' ;} 17.0% {content : '114' ;} 17.5% {content : '115' ;} 18.0% {content : '116' ;} 18.5% {content : '117' ;} 19.0% {content : '118' ;} 19.5% {content : '119' ;} 20.0% {content : '120' ;} 20.5% {content : '121' ;} 21.0% {content : '122' ;} 21.5% {content : '123' ;} 22.0% {content : '124' ;} 22.5% {content : '125' ;} 23.0% {content : '126' ;} 23.5% {content : '127' ;} 24.0% {content : '128' ;} 24.5% {content : '129' ;} 25.0% {content : '130' ;} 25.5% {content : '131' ;} 26.0% {content : '132' ;} 26.5% {content : '133' ;} 27.0% {content : '134' ;} 27.5% {content : '135' ;} 28.0% {content : '136' ;} 28.5% {content : '137' ;} 29.0% {content : '138' ;} 29.5% {content : '139' ;} 30.0% {content : '140' ;} 30.5% {content : '141' ;} 31.0% {content : '142' ;} 31.5% {content : '143' ;} 32.0% {content : '144' ;} 32.5% {content : '145' ;} 33.0% {content : '146' ;} 33.5% {content : '147' ;} 34.0% {content : '148' ;} 34.5% {content : '149' ;} 35.0% {content : '150' ;} 35.5% {content : '151' ;} 36.0% {content : '152' ;} 36.5% {content : '153' ;} 37.0% {content : '154' ;} 37.5% {content : '155' ;} 38.0% {content : '156' ;} 38.5% {content : '157' ;} 39.0% {content : '158' ;} 39.5% {content : '159' ;} 40.0% {content : '160' ;} 40.5% {content : '161' ;} 41.0% {content : '162' ;} 41.5% {content : '163' ;} 42.0% {content : '164' ;} 42.5% {content : '165' ;} 43.0% {content : '166' ;} 43.5% {content : '167' ;} 44.0% {content : '168' ;} 44.5% {content : '169' ;} 45.0% {content : '170' ;} 45.5% {content : '171' ;} 46.0% {content : '172' ;} 46.5% {content : '173' ;} 47.0% {content : '174' ;} 47.5% {content : '175' ;} 48.0% {content : '176' ;} 48.5% {content : '177' ;} 49.0% {content : '178' ;} 49.5% {content : '179' ;} 50.0% {content : '180' ;} 50.5% {content : '181' ;} 51.0% {content : '182' ;} 51.5% {content : '183' ;} 52.0% {content : '184' ;} 52.5% {content : '185' ;} 53.0% {content : '186' ;} 53.5% {content : '187' ;} 54.0% {content : '188' ;} 54.5% {content : '189' ;} 55.0% {content : '190' ;} 55.5% {content : '191' ;} 56.0% {content : '192' ;} 56.5% {content : '193' ;} 57.0% {content : '194' ;} 57.5% {content : '195' ;} 58.0% {content : '196' ;} 58.5% {content : '197' ;} 59.0% {content : '198' ;} 59.5% {content : '199' ;} 60.0% {content : '200' ;} 60.5% {content : '201' ;} 61.0% {content : '202' ;} 61.5% {content : '203' ;} 62.0% {content : '204' ;} 62.5% {content : '205' ;} 63.0% {content : '206' ;} 63.5% {content : '207' ;} 64.0% {content : '208' ;} 64.5% {content : '209' ;} 65.0% {content : '210' ;} 65.5% {content : '211' ;} 66.0% {content : '212' ;} 66.5% {content : '213' ;} 67.0% {content : '214' ;} 67.5% {content : '215' ;} 68.0% {content : '216' ;} 68.5% {content : '217' ;} 69.0% {content : '218' ;} 69.5% {content : '219' ;} 70.0% {content : '220' ;} 70.5% {content : '221' ;} 71.0% {content : '222' ;} 71.5% {content : '223' ;} 72.0% {content : '224' ;} 72.5% {content : '225' ;} 73.0% {content : '226' ;} 73.5% {content : '227' ;} 74.0% {content : '228' ;} 74.5% {content : '229' ;} 75.0% {content : '230' ;} 75.5% {content : '231' ;} 76.0% {content : '232' ;} 76.5% {content : '233' ;} 77.0% {content : '234' ;} 77.5% {content : '235' ;} 78.0% {content : '236' ;} 78.5% {content : '237' ;} 79.0% {content : '238' ;} 79.5% {content : '239' ;} 80.0% {content : '240' ;} 80.5% {content : '241' ;} 81.0% {content : '242' ;} 81.5% {content : '243' ;} 82.0% {content : '244' ;} 82.5% {content : '245' ;} 83.0% {content : '246' ;} 83.5% {content : '247' ;} 84.0% {content : '248' ;} 84.5% {content : '249' ;} 85.0% {content : '250' ;} 85.5% {content : '251' ;} 86.0% {content : '252' ;} 86.5% {content : '253' ;} 87.0% {content : '254' ;} 87.5% {content : '255' ;} 88.0% {content : '256' ;} 88.5% {content : '257' ;} 89.0% {content : '258' ;} 89.5% {content : '259' ;} 90.0% {content : '260' ;} 90.5% {content : '261' ;} 91.0% {content : '262' ;} 91.5% {content : '263' ;} 92.0% {content : '264' ;} 92.5% {content : '265' ;} 93.0% {content : '266' ;} 93.5% {content : '267' ;} 94.0% {content : '268' ;} 94.5% {content : '269' ;} 95.0% {content : '270' ;} 95.5% {content : '271' ;} 96.0% {content : '272' ;} 96.5% {content : '273' ;} 97.0% {content : '274' ;} 97.5% {content : '275' ;} 98.0% {content : '276' ;} 98.5% {content : '277' ;} 99.0% {content : '278' ;} 99.5% {content : '279' ;} 
+    100.0% {content : '280' ;}
+}
