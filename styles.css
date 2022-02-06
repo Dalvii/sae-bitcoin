@@ -8,6 +8,10 @@
 
 /* Style par defaut */
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -50,7 +54,7 @@ main {
     margin: auto;
     width: 100%;
     max-width: 1200px;
-    background-color: var(--main-color);
+    background-color: var(--item-bg-color);
 }
 
 h1 {
@@ -69,7 +73,10 @@ a {
     font-style: normal;
     text-decoration: none;
 }
-/* Gestion du menu */
+
+/* ///////////////////////////////////////////////////////////// */
+/* ////////////////////// Barre Navigation //////////////////// */
+/* /////////////////////////////////////////////////////////// */
 
 nav {
     display: flex;
@@ -95,9 +102,9 @@ nav > ol {
     justify-content: space-around;
     align-items: center;
 
-    width: 500px;
+    width: 650px;
     height: 100%;
-    margin-left: calc(100% - 600px);
+    margin-left: calc(100% - 700px);
 }
 
 nav > ol > li {
@@ -106,20 +113,153 @@ nav > ol > li {
     
     list-style: none;
     font-size: 18px;
-    color: var(---sub-title-color);
+    font-weight: 500;
+    color: var(--sub-title-color);
 }
 
-.selected_article {
+.selected_article, nav > ol > li:hover {
     color : var(--main-style-color);
-    border-bottom: 2.5px solid var(--main-style-color);
-}
-
-nav > ol > li:hover{
-    color : var(--main-style-color);
-    border-bottom: 2.5px solid var(--main-style-color);
+    border-bottom: 3px solid var(--main-style-color);
 }
 
 
+
+footer {
+    height: 180px;
+    background-color: #a8a8a8;
+}
+
+/* ol > li::after{
+    position: absolute;
+    content: ' ';
+    padding: 0;
+    margin-top: 57px;
+    margin-left: -463px;
+    width: 0px;
+    height: 3px;
+    background-color: var(--main-style-color);
+    transition: margin-left 2s ,width 2s;
+}
+
+nav > ol > li:hover::after {
+    width: 1200px;
+    margin-left: -1183px;
+} 
+
+@keyframes animation_barre_nav {
+    from {
+        width: 0px;
+        margin-left: 463px;
+    }
+    to{
+        width: 1200px;
+        margin-left: -1200px;
+    }
+}
+*/
+
+.sous_menu {
+    flex :0;
+    padding: 0;
+}
+
+.sous_menu > div{
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 350px;
+    max-width: 1200px;
+    margin-top: 60px;
+    margin-left: -1191px;
+    background-color: var(--item-bg-color);
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-top : transparent 2px solid;
+
+    align-items: center;
+    justify-content: flex-start;
+    
+    padding-left: 25px;
+    box-shadow : 0px 7px 10px 0 var(--shadow-color);
+}
+
+.sous_menu > div > ul {
+    display: block;
+    list-style-type: none;
+    height: auto;
+    font-size: 20px;
+}
+
+.sous_menu > div > ul > a > li{
+    margin-top : 20px;
+    animation: margin_li_sous_menu 1s;
+}
+
+nav > ol:hover > li.sous_menu > div, .sous_menu > div:hover { 
+    display : flex;  
+}
+
+.sous_menu > div > ul > a > li {
+    color: transparent;
+    background: linear-gradient(90deg, var(--main-style-color) 50%, var(--sub-title-color) 50%, var(--sub-title-color) 100%);
+    background-size: 200%;
+    
+    font-weight: 500;
+    -webkit-background-clip: text;
+    background-position: 100%;
+    transition: background-position 0.5s;
+}
+
+.sous_menu > div > ul > a > li:hover {
+    background-position: 0%;
+}
+
+
+/* Gestion ul li sous menu */
+.sous_menu ul:first-of-type {
+    margin-right: 120px;
+}
+
+.sous_menu ul:last-of-type::before{
+    position: absolute;
+    content: ' ' ;
+    height: 180px;
+    width: 2px;
+    background-color: var(--main-style-color);
+    margin-left: -80px;
+    margin-top: 0;
+    animation: barre_sous_menu 1s;
+}
+
+.sous_menu ul:last-of-type > a > li {
+    margin-top: 30px;
+}
+
+
+.sous_menu ul > a:first-of-type > li {
+    margin-top: 0;
+}
+
+@keyframes barre_sous_menu {
+    from {
+        height: 0px;
+        margin-top: -60px;
+    }
+}
+
+@keyframes margin_li_sous_menu {
+    from {
+        margin-top : 15px;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .sous_menu > div{
+        position: absolute;
+        margin-left: calc(-100vw + 15px);
+    }
+}
 
 
 /* ///////////////////////////////////////////////////////////// */
@@ -128,7 +268,7 @@ nav > ol > li:hover{
 
 
 .page_acceuil a {
-    color : var(---main-text-color);
+    color : var(--main-text-color);
 }
 
 .main_article {
@@ -147,7 +287,7 @@ nav > ol > li:hover{
 }
 
 .main_article > a > img {
-    box-shadow: var(--shadow_style_left);
+    box-shadow: var(--shadow_style_right);
     width : 50%;
 }
 
@@ -159,7 +299,7 @@ nav > ol > li:hover{
 
 .main_article div > span {
     font-size: 16px;
-    color: var(---section-sub-color);
+    color: var(--section-sub-color);
 }
 
 .main_article  div > h3 {
@@ -176,19 +316,16 @@ nav > ol > li:hover{
 
 .container {
     margin: auto;
-    width: 88%;
-    
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 15px;
     grid-auto-rows: minmax(100px, auto);
     justify-items: center;
-    
+    width: 85%;
 }
 
 .sous_article {
     width: 100%;
-    max-width: 300px;
     margin-top: 30px;
     border-radius : 25px;
     box-shadow: var(--shadow_style_left);
@@ -202,6 +339,9 @@ nav > ol > li:hover{
     margin-left : 15px;
     margin-top : 15px;
     display : block;
+
+    
+    margin-bottom: 60px;
 }
 
 .sous_article > a > span {
@@ -210,16 +350,24 @@ nav > ol > li:hover{
 }
 
 .sous_article > a > h3 {
-    font-size: 22px;
-    width : 80%;
+    font-size: 18px;
+    width : 95%;
+    
 }
 .sous_article > a > p {
     font-size: 13px;
     width : 80%;
+    display: none;
 }
 
-/* Article principale */
+/*   Sous article Hover */
 
+
+/* ///////////////////////////////////////////////////////////// */
+/* ////////////////////// Page d'article ////////////////////// */
+/* /////////////////////////////////////////////////////////// */
+
+/*  Aricle principale   */
 h1, .article_title, .citation, nav {
     color: var(--main-text-color);
 }
@@ -289,7 +437,6 @@ ol {
     line-height: 1.6;
     color: var(--main-text-color);
     font-weight: 400;
-    scroll-behavior: smooth;
 
 }
 
@@ -298,42 +445,205 @@ ol {
 }
 
 
+/* ///////////////////////////////////////////////////////////// */
+/* //////////////////// Selection article ///////////////////// */
+/* /////////////////////////////////////////////////////////// */
 
+/*  Bouton suivant  */ 
+.bouton_suivant{
+    display: flex;
+    justify-content: flex-end; 
+    padding-right: 50px;
+}
 
+.bouton_suivant a {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.bouton_suivant p {
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+    margin-right: 10px;
+    color: transparent;
+    background: linear-gradient(90deg, var(--main-style-color) 50%, var(--sub-title-color) 50%, var(--sub-title-color) 100%);
+    background-size: 200%;
+    
+    -webkit-background-clip: text;
+    background-position: 100%;
+    transition: background-position 1s;
+}
 
-.teste {
-    display: block;
-    background-color: black;
-    width: 100px;
+.bouton_suivant p:hover {
+    background-position: 0%;
+}
+
+.bouton_suivant a > div:hover ~ p {
+    background-position: 0%;
+}
+
+.bouton_suivant p::after {
+    content: ' ';
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    margin-top: 22px;
+    margin-left: -136px;
+    background-color: var(--main-style-color);
+    transition: width 1s;
+}
+
+.bouton_suivant p:hover::after {
+    width: 135px;
+}
+
+.bouton_suivant a > div:hover ~ p::after {
+    width: 135px;
+}
+
+.bouton_suivant a > div {
+    width: 50px;
     height: 50px;
-    color: white;
+    background-color: var(--main-style-color);
+    border-radius: 15px;
 }
 
-.teste::before{
-    content: '21';
-    animation: test 2s;
+.fleche {
+    margin-left: 3px;
 }
 
-.teste{
-    position: fixed;
-    content: '000';
-    animation: test 2s;
+.fleche_part1::before {
+    position: absolute;
+    content: ' ';
+    background-color: white;
+    width: 30px;
+    height: 2px;
+    margin-top: 25px;
+    margin-left: 6px;
+    border-radius: 2px;
 }
 
-.teste::after{
-    content: '000';
-    animation: test 2s;
+.fleche_part2::before {
+    position: absolute;
+    content: ' ';
+    background-color: white;
+    width: 15px;
+    height: 2px;
+    margin-top: 20px;
+    margin-left: 23px;
+    transform: rotate(45deg);
+    border-radius: 2px;
+}
+
+.fleche_part2::after{
+    position: absolute;
+    content: ' ';
+    background-color: white;
+    width: 15px;
+    height: 2px;
+    margin-top: 30px;
+    margin-left: 23px;
+    transform: rotate(-45deg);
+    border-radius: 2px;
+}
+
+.selection_article > h2 {
+    text-align: center;
+    color: var(--sub-title-color);
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.selection_article > h2::after {
+    position: absolute;
+    content: ' ';
+    margin-top: 50px;
+    margin-left: -263px;
+
+    width: 323px;
+    height: 2px;
+    background-color: var(--sub-title-color);
+
 }
 
 
-@keyframes test {
-    0.0% {content : '000' ;} 
-        0.5% {content : '003' ;} 1.0% {content : '006' ;} 1.5% {content : '009' ;} 2.0% {content : '012' ;} 2.5% {content : '017' ;} 3.0% {content : '022' ;} 3.5% {content : '027' ;} 4.0% {content : '032' ;} 4.5% {content : '037' ;} 5.0% {content : '042' ;} 5.5% {content : '047' ;} 6.0% {content : '052' ;} 6.5% {content : '057' ;} 7.0% {content : '062' ;} 7.5% {content : '067' ;} 8.0% {content : '072' ;} 8.5% {content : '077' ;} 9.0% {content : '082' ;} 9.5% {content : '087' ;} 10.0% {content : '092' ;} 10.5% {content : '097' ;} 11.0% {content : '102' ;} 11.5% {content : '109' ;} 12.0% {content : '116' ;} 12.5% {content : '123' ;} 13.0% {content : '130' ;} 13.5% {content : '137' ;} 14.0% {content : '144' ;} 14.5% {content : '151' ;} 15.0% {content : '158' ;} 15.5% {content : '165' ;} 16.0% {content : '172' ;} 16.5% {content : '179' ;} 17.0% {content : '186' ;} 17.5% {content : '193' ;} 18.0% {content : '200' ;} 18.5% {content : '207' ;} 19.0% {content : '214' ;} 19.5% {content : '221' ;} 20.0% {content : '228' ;} 20.5% {content : '235' ;} 21.0% {content : '242' ;} 21.5% {content : '249' ;} 22.0% {content : '256' ;} 22.5% {content : '263' ;} 23.0% {content : '270' ;} 23.5% {content : '277' ;} 24.0% {content : '284' ;} 24.5% {content : '291' ;} 25.0% {content : '298' ;} 25.5% {content : '305' ;} 26.0% {content : '312' ;} 26.5% {content : '319' ;} 27.0% {content : '326' ;} 27.5% {content : '333' ;} 28.0% {content : '340' ;} 28.5% {content : '347' ;} 29.0% {content : '354' ;} 29.5% {content : '361' ;} 30.0% {content : '368' ;} 30.5% {content : '375' ;} 31.0% {content : '382' ;} 31.5% {content : '389' ;} 32.0% {content : '396' ;} 32.5% {content : '403' ;} 33.0% {content : '410' ;} 33.5% {content : '417' ;} 34.0% {content : '424' ;} 34.5% {content : '431' ;} 35.0% {content : '438' ;} 35.5% {content : '445' ;} 36.0% {content : '452' ;} 36.5% {content : '459' ;} 37.0% {content : '466' ;} 37.5% {content : '473' ;} 38.0% {content : '480' ;} 38.5% {content : '487' ;} 39.0% {content : '494' ;} 39.5% {content : '501' ;} 40.0% {content : '508' ;} 40.5% {content : '515' ;} 41.0% {content : '522' ;} 41.5% {content : '529' ;} 42.0% {content : '536' ;} 42.5% {content : '543' ;} 43.0% {content : '550' ;} 43.5% {content : '557' ;} 44.0% {content : '564' ;} 44.5% {content : '571' ;} 45.0% {content : '578' ;} 45.5% {content : '585' ;} 46.0% {content : '592' ;} 46.5% {content : '599' ;} 47.0% {content : '606' ;} 47.5% {content : '613' ;} 48.0% {content : '620' ;} 48.5% {content : '627' ;} 49.0% {content : '634' ;} 49.5% {content : '641' ;} 50.0% {content : '648' ;} 50.5% {content : '655' ;} 51.0% {content : '662' ;} 51.5% {content : '669' ;} 52.0% {content : '676' ;} 52.5% {content : '683' ;} 53.0% {content : '690' ;} 53.5% {content : '697' ;} 54.0% {content : '704' ;} 54.5% {content : '711' ;} 55.0% {content : '718' ;} 55.5% {content : '725' ;} 56.0% {content : '732' ;} 56.5% {content : '739' ;} 57.0% {content : '746' ;} 57.5% {content : '753' ;} 58.0% {content : '760' ;} 58.5% {content : '767' ;} 59.0% {content : '774' ;} 59.5% {content : '781' ;} 60.0% {content : '788' ;} 60.5% {content : '795' ;} 61.0% {content : '802' ;} 61.5% {content : '809' ;} 62.0% {content : '816' ;} 62.5% {content : '823' ;} 63.0% {content : '830' ;} 63.5% {content : '837' ;} 64.0% {content : '844' ;} 64.5% {content : '851' ;} 65.0% {content : '858' ;} 65.5% {content : '865' ;} 66.0% {content : '872' ;} 66.5% {content : '879' ;} 67.0% {content : '886' ;} 67.5% {content : '893' ;} 68.0% {content : '900' ;} 68.5% {content : '907' ;} 69.0% {content : '914' ;} 69.5% {content : '921' ;} 70.0% {content : '928' ;} 70.5% {content : '935' ;} 71.0% {content : '942' ;} 71.5% {content : '949' ;} 72.0% {content : '956' ;} 72.5% {content : '963' ;} 73.0% {content : '970' ;} 73.5% {content : '977' ;} 74.0% {content : '984' ;} 74.5% {content : '991' ;} 75.0% {content : '998' ;} 75.5% {content : '000' ;} 76.0% {content : '003' ;} 76.5% {content : '006' ;} 77.0% {content : '009' ;} 77.5% {content : '012' ;} 78.0% {content : '017' ;} 78.5% {content : '022' ;} 79.0% {content : '027' ;} 79.5% {content : '032' ;} 80.0% {content : '037' ;} 80.5% {content : '042' ;} 81.0% {content : '047' ;} 81.5% {content : '052' ;} 82.0% {content : '057' ;} 82.5% {content : '062' ;} 83.0% {content : '067' ;} 83.5% {content : '072' ;} 84.0% {content : '077' ;} 84.5% {content : '082' ;} 85.0% {content : '087' ;} 85.5% {content : '092' ;} 86.0% {content : '097' ;} 86.5% {content : '102' ;} 87.0% {content : '109' ;} 87.5% {content : '116' ;} 88.0% {content : '123' ;} 88.5% {content : '130' ;} 89.0% {content : '137' ;} 89.5% {content : '144' ;} 90.0% {content : '151' ;} 90.5% {content : '158' ;} 91.0% {content : '165' ;} 91.5% {content : '172' ;} 92.0% {content : '179' ;} 92.5% {content : '186' ;} 93.0% {content : '193' ;} 93.5% {content : '200' ;} 94.0% {content : '207' ;} 94.5% {content : '214' ;} 95.0% {content : '221' ;} 95.5% {content : '228' ;} 96.0% {content : '235' ;} 96.5% {content : '242' ;} 97.0% {content : '249' ;} 97.5% {content : '256' ;} 98.0% {content : '263' ;} 98.5% {content : '270' ;} 99.0% {content : '277' ;} 99.5% {content : '284' ;} 
-    100.0% {content : '000' ;}
+/* ///////////////////////////////////////////////////////////// */
+/* ////////////////////     Carousel    /////////////////////// */
+/* /////////////////////////////////////////////////////////// */
+
+.carousel {
+    width: 90%;
+    margin: auto;
+    overflow-x: scroll ;
+    display: flex;
+    margin-top: 50px;
+    box-shadow: 0px 0px 30px 0 var(--shadow-color);
+    border-radius: 25px;
+    -webkit-appearance: none;
+
+    /* A virer */
+    margin-bottom: 200px;
+    
+
+    /* style moz */
+    scrollbar-width: thin;
 }
 
-@keyframes test2 {
-    0.0% {content : '000' ;} 
-        0.5% {content : '005' ;} 1.0% {content : '010' ;} 1.5% {content : '015' ;} 2.0% {content : '020' ;} 2.5% {content : '025' ;} 3.0% {content : '030' ;} 3.5% {content : '035' ;} 4.0% {content : '040' ;} 4.5% {content : '045' ;} 5.0% {content : '050' ;} 5.5% {content : '055' ;} 6.0% {content : '060' ;} 6.5% {content : '065' ;} 7.0% {content : '070' ;} 7.5% {content : '075' ;} 8.0% {content : '080' ;} 8.5% {content : '085' ;} 9.0% {content : '090' ;} 9.5% {content : '095' ;} 10.0% {content : '100' ;} 10.5% {content : '101' ;} 11.0% {content : '102' ;} 11.5% {content : '103' ;} 12.0% {content : '104' ;} 12.5% {content : '105' ;} 13.0% {content : '106' ;} 13.5% {content : '107' ;} 14.0% {content : '108' ;} 14.5% {content : '109' ;} 15.0% {content : '110' ;} 15.5% {content : '111' ;} 16.0% {content : '112' ;} 16.5% {content : '113' ;} 17.0% {content : '114' ;} 17.5% {content : '115' ;} 18.0% {content : '116' ;} 18.5% {content : '117' ;} 19.0% {content : '118' ;} 19.5% {content : '119' ;} 20.0% {content : '120' ;} 20.5% {content : '121' ;} 21.0% {content : '122' ;} 21.5% {content : '123' ;} 22.0% {content : '124' ;} 22.5% {content : '125' ;} 23.0% {content : '126' ;} 23.5% {content : '127' ;} 24.0% {content : '128' ;} 24.5% {content : '129' ;} 25.0% {content : '130' ;} 25.5% {content : '131' ;} 26.0% {content : '132' ;} 26.5% {content : '133' ;} 27.0% {content : '134' ;} 27.5% {content : '135' ;} 28.0% {content : '136' ;} 28.5% {content : '137' ;} 29.0% {content : '138' ;} 29.5% {content : '139' ;} 30.0% {content : '140' ;} 30.5% {content : '141' ;} 31.0% {content : '142' ;} 31.5% {content : '143' ;} 32.0% {content : '144' ;} 32.5% {content : '145' ;} 33.0% {content : '146' ;} 33.5% {content : '147' ;} 34.0% {content : '148' ;} 34.5% {content : '149' ;} 35.0% {content : '150' ;} 35.5% {content : '151' ;} 36.0% {content : '152' ;} 36.5% {content : '153' ;} 37.0% {content : '154' ;} 37.5% {content : '155' ;} 38.0% {content : '156' ;} 38.5% {content : '157' ;} 39.0% {content : '158' ;} 39.5% {content : '159' ;} 40.0% {content : '160' ;} 40.5% {content : '161' ;} 41.0% {content : '162' ;} 41.5% {content : '163' ;} 42.0% {content : '164' ;} 42.5% {content : '165' ;} 43.0% {content : '166' ;} 43.5% {content : '167' ;} 44.0% {content : '168' ;} 44.5% {content : '169' ;} 45.0% {content : '170' ;} 45.5% {content : '171' ;} 46.0% {content : '172' ;} 46.5% {content : '173' ;} 47.0% {content : '174' ;} 47.5% {content : '175' ;} 48.0% {content : '176' ;} 48.5% {content : '177' ;} 49.0% {content : '178' ;} 49.5% {content : '179' ;} 50.0% {content : '180' ;} 50.5% {content : '181' ;} 51.0% {content : '182' ;} 51.5% {content : '183' ;} 52.0% {content : '184' ;} 52.5% {content : '185' ;} 53.0% {content : '186' ;} 53.5% {content : '187' ;} 54.0% {content : '188' ;} 54.5% {content : '189' ;} 55.0% {content : '190' ;} 55.5% {content : '191' ;} 56.0% {content : '192' ;} 56.5% {content : '193' ;} 57.0% {content : '194' ;} 57.5% {content : '195' ;} 58.0% {content : '196' ;} 58.5% {content : '197' ;} 59.0% {content : '198' ;} 59.5% {content : '199' ;} 60.0% {content : '200' ;} 60.5% {content : '201' ;} 61.0% {content : '202' ;} 61.5% {content : '203' ;} 62.0% {content : '204' ;} 62.5% {content : '205' ;} 63.0% {content : '206' ;} 63.5% {content : '207' ;} 64.0% {content : '208' ;} 64.5% {content : '209' ;} 65.0% {content : '210' ;} 65.5% {content : '211' ;} 66.0% {content : '212' ;} 66.5% {content : '213' ;} 67.0% {content : '214' ;} 67.5% {content : '215' ;} 68.0% {content : '216' ;} 68.5% {content : '217' ;} 69.0% {content : '218' ;} 69.5% {content : '219' ;} 70.0% {content : '220' ;} 70.5% {content : '221' ;} 71.0% {content : '222' ;} 71.5% {content : '223' ;} 72.0% {content : '224' ;} 72.5% {content : '225' ;} 73.0% {content : '226' ;} 73.5% {content : '227' ;} 74.0% {content : '228' ;} 74.5% {content : '229' ;} 75.0% {content : '230' ;} 75.5% {content : '231' ;} 76.0% {content : '232' ;} 76.5% {content : '233' ;} 77.0% {content : '234' ;} 77.5% {content : '235' ;} 78.0% {content : '236' ;} 78.5% {content : '237' ;} 79.0% {content : '238' ;} 79.5% {content : '239' ;} 80.0% {content : '240' ;} 80.5% {content : '241' ;} 81.0% {content : '242' ;} 81.5% {content : '243' ;} 82.0% {content : '244' ;} 82.5% {content : '245' ;} 83.0% {content : '246' ;} 83.5% {content : '247' ;} 84.0% {content : '248' ;} 84.5% {content : '249' ;} 85.0% {content : '250' ;} 85.5% {content : '251' ;} 86.0% {content : '252' ;} 86.5% {content : '253' ;} 87.0% {content : '254' ;} 87.5% {content : '255' ;} 88.0% {content : '256' ;} 88.5% {content : '257' ;} 89.0% {content : '258' ;} 89.5% {content : '259' ;} 90.0% {content : '260' ;} 90.5% {content : '261' ;} 91.0% {content : '262' ;} 91.5% {content : '263' ;} 92.0% {content : '264' ;} 92.5% {content : '265' ;} 93.0% {content : '266' ;} 93.5% {content : '267' ;} 94.0% {content : '268' ;} 94.5% {content : '269' ;} 95.0% {content : '270' ;} 95.5% {content : '271' ;} 96.0% {content : '272' ;} 96.5% {content : '273' ;} 97.0% {content : '274' ;} 97.5% {content : '275' ;} 98.0% {content : '276' ;} 98.5% {content : '277' ;} 99.0% {content : '278' ;} 99.5% {content : '279' ;} 
-    100.0% {content : '280' ;}
+
+/*      Style Webkit    */
+.carousel::-webkit-scrollbar {
+    height: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--main-color);
+    box-shadow: inset 0px 0px 4px 0 var(--shadow-color);
+}
+
+.carousel::-webkit-scrollbar-corner {
+    display: none;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--sub-title-color);
+}
+.carousel > .sous_article {
+    width: 30%;
+    flex-shrink: 0;
+    margin : 10px;
+    box-shadow: 0px 0px 20px 0 var(--shadow-color);
+}
+
+.carousel > .sous_article > a {
+    color: var(--main-text-color);
+}
+
+
+
+/* ///////////////////////////////////////////////////////////// */
+/* //////////////     Image svg gestion css    //////////////// */
+/* /////////////////////////////////////////////////////////// */
+
+
+.img_svg_second_color {
+    fill: none;
+    stroke-width: 5px;
+    stroke : var(--main-text-color);
+}
+
+.img_svg_second_color, .img_svg_main_color {
+    fill-rule: evenodd;
+}
+
+#Accolade_1, #Accolade_2 {
+    fill : var(--main-style-color);
+}
+
+#case_grp3 {
+    stroke : var(--main-style-color);
+}
+
+.image_svg > svg{
+    width : 50%;
 }
