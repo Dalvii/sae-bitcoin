@@ -505,7 +505,7 @@ ol {
     width: 135px;
 }
 
-.boutont_suivant a:hover div:hover  p::after {
+.boutont_suivant a:hover div:hover ~ p::after {
     width: 135px;
 } 
 
