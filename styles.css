@@ -450,18 +450,24 @@ ol {
 /* /////////////////////////////////////////////////////////// */
 
 /*  Bouton suivant  */ 
-.bouton_suivant{
+.bouton{
     display: flex;
-    justify-content: flex-end; 
+    justify-content: space-between; 
     padding-right: 50px;
+    padding-left: 50px;
 }
 
-.bouton_suivant a {
+.bouton a {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
 }
-.bouton_suivant p {
+
+.bouton p:hover {
+    background-position: 0%;
+}
+
+.bouton p {
     font-weight: 500;
     font-size: 20px;
     margin: 0;
@@ -475,12 +481,13 @@ ol {
     transition: background-position 1s;
 }
 
-.bouton_suivant p:hover {
+.bouton a:hover > p  {
     background-position: 0%;
 }
-
-.bouton_suivant a > div:hover ~ p {
-    background-position: 0%;
+.bouton_suivant {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 }
 
 .bouton_suivant p::after {
@@ -498,15 +505,57 @@ ol {
     width: 135px;
 }
 
-.bouton_suivant a > div:hover ~ p::after {
+.boutont_suivant a:hover div:hover  p::after {
     width: 135px;
+} 
+
+/* Bouton precedent */
+.bouton_precedent > a {
+    display: flex;
+    flex-direction: row;
+}
+.bouton_precedent p{
+    margin-left: 10px;
+    background: linear-gradient(90deg, var(--sub-title-color) 50%, var(--main-style-color) 50%, var(--main-style-color) 100%);
+    background-size: 200%;
+    
+    -webkit-background-clip: text;
+    background-position: 0%;
+    transition: background-position 1s;
 }
 
-.bouton_suivant a > div {
+.bouton_precedent a:hover > p {
+    background-position: 100%;
+}
+
+.bouton_precedent p::after {
+    content: ' ';
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    margin-top: 22px;
+    margin-left: 0px;
+    background-color: var(--main-style-color);
+    transition: width 1s, margin-left 1s;
+}
+
+.bouton_precedent p:hover::after, .boutont_prencendent a > div:hover ~ p::after {
+    width: 162px;
+    margin-left: -163px;
+}
+
+
+
+/* Fleche Bouton */
+.bouton a > div {
     width: 50px;
     height: 50px;
     background-color: var(--main-style-color);
     border-radius: 15px;
+}
+
+.bouton_precedent a > div{
+    transform : rotate(180deg);
 }
 
 .fleche {
@@ -548,6 +597,12 @@ ol {
     border-radius: 2px;
 }
 
+
+
+/* ///////////////////////////////////////////////////////////// */
+/* ////////////////////     Carousel    /////////////////////// */
+/* /////////////////////////////////////////////////////////// */
+
 .selection_article > h2 {
     text-align: center;
     color: var(--sub-title-color);
@@ -566,11 +621,6 @@ ol {
     background-color: var(--sub-title-color);
 
 }
-
-
-/* ///////////////////////////////////////////////////////////// */
-/* ////////////////////     Carousel    /////////////////////// */
-/* /////////////////////////////////////////////////////////// */
 
 .carousel {
     width: 90%;
@@ -626,6 +676,7 @@ ol {
 /* /////////////////////////////////////////////////////////// */
 
 
+
 .img_svg_second_color {
     fill: none;
     stroke-width: 5px;
@@ -644,6 +695,6 @@ ol {
     stroke : var(--main-style-color);
 }
 
-.image_svg > svg{
+.image_svg svg{
     width : 50%;
-}
+} 
