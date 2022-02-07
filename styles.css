@@ -505,7 +505,7 @@ ol {
     width: 135px;
 }
 
-.boutont_suivant a > div:hover ~ p::after {
+.bouton_suivant a:hover p::after {
     width: 135px;
 } 
 
@@ -539,7 +539,7 @@ ol {
     transition: width 1s, margin-left 1s;
 }
 
-.bouton_precedent p:hover::after, .boutont_prencendent a > div:hover ~ p::after {
+.bouton_precedent p:hover::after, .bouton_precedent a > div:hover ~ p::after {
     width: 162px;
     margin-left: -163px;
 }
