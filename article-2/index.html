@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <!-- UTF-8 Permet l'usage d'emojis -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Lora:ital@1&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
+    <title>Bitcoin</title>
+
+</head>
+
+<body>
+
+    <main>
+        <nav>
+            <div>
+                <!-- <img src="./img/Bitcoin.svg.png" alt="Logo Bitcoin"> -->
+            </div>
+            <ol>
+                <li class="selected_article">
+                    <a href="/article-1">Explications</a>
+                    <div class="sous_menu">
+                        <ul>
+                            <li><a href="/article-1">Quelles sont les fonctions réelles du Bitcoin comparativement aux devises ?</a></li>
+                            <li><a href="/article-2">Quelle est le mode de création et de circulation du bitcoin ?</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="/article-3">Influence</a>
+                    <div class="sous_menu">
+                        <ul>
+                            <li><a href="/article-3">Quelles sont les raisons du succès du Bitcoin ?</a></li>
+                            <li><a href="/article-4">Quelle sont ses conséquences écologiques ?</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="/article-5">Place dans le monde</a>
+                    <div class="sous_menu">
+                        <ul>
+                            <li><a href="/article-5">Quelle place occupe le bitcoin parmi les titres spéculatifs ?</a></li>
+                            <li><a href="/article-6">Quelles sont ses perspectives d’avenir compte tenu des moyens de le contrôler ?</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Annexe</a>
+                    <div class="sous_menu">
+                        <ul>
+                            <li><a href="/cours">Cours du Bitcoin</a></li>
+                            <li><a href="../sources">Bibliographie</a></li>
+                            <li><a href="../a-propos">A-propos</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <article class="Article_Principal">
+            <div class="article_title_label">Explications</div>
+            <div class="article_title">Quel est le mode de création et de circulation du Bitcoin ?</div>
+            <div class="article_title_infos">Temps de lecture ~10min</div>
+
+            <div class="sommaire">
+                <h3>Sommaire</h3>
+                <ul>
+                    <li><a href="#partie-1">Les technologies derrière le Bitcoin</a></li>
+                    <li><a href="#partie-2">Mécanisme et sécurisation de cette monnaie</a></li>
+                    <li><a href="#partie-3">Synchronisation et partage d’informations</a></li>
+                    <li><a href="#partie-4">Trouver un identifiant au bloc pour agrandir la chaine</a></li>
+                    <li><a href="#partie-5">Pourquoi la monnaie est-elle sécurisé</a></li>
+                    <li><a href="#partie-6">Mode de création du Bitcoin</a></li> 
+                </ul>
+            </div>
+
+			<h3 id="partie-1"><strong>Pour aborder la circulation du bitcoin ainsi
+					que son mode de création, il est indispensable d’expliquer les technologies derrière cette
+					monnaie.</strong></h3>
+			<p>La base de données de toutes les transactions
+				n&#x27;est pas gérée par une instance centrale
+				comme une banque traditionnelle, mais partagée dans un immense réseau <mark
+					class="highlight-orange">Peer-to-Peer</mark>, tout ce qui est connecté au réseau Bitcoin peut
+				héberger une copie de la base de données qui contient toutes les transactions.</p>
+			<p>Cependant la banque sert à deux chose aujourd’hui : à
+				identifier les <mark class="highlight-orange">auteurs </mark>des transactions ainsi que de <mark
+					class="highlight-orange">vérifier les soldes</mark>, et accessoirement, d’empêcher tout <mark
+					class="highlight-orange">modification illégale</mark>.</p>
+			<p><strong>Pour résoudre ces problèmes, le Bitcoin se
+					base sur deux technologies: </strong><mark class="highlight-orange"><strong>la signature
+						électronique</strong></mark><strong> et la </strong><mark
+					class="highlight-orange"><strong>blockchain</strong></mark><strong>.</strong></p>
+
+			<h3 id="partie-2">Mécanisme et sécurisation du Bitcoin.</h3>
+			<p><strong>Pour être certains des auteurs des
+					transactions, le principe de </strong><mark class="highlight-orange"><strong>cryptographie
+						asymétrique</strong></mark><strong> est utilisé.</strong></p>
+			<p>En cryptographie généralement<mark
+					class="highlight-orange"> </mark>on utilise une clé qui permet de chiffrer et déchiffrer des
+				messages. Dans les techniques de chiffrage des plus simples, on ne peut déchiffrer un message que si on
+				possède la clé qui a servi à le chiffrer.</p>
+			<div class="column-list">
+				<div style="width:50%" class="column">
+					<p>Mais il existe des systèmes de chiffrage plus
+						sophistiqués comme ce qu&#x27;on appelle l&#x27;<mark class="highlight-orange">algorithme
+							RSA</mark> qui sont <mark class="highlight-orange">asymétriques</mark>, c&#x27;est-à-dire la
+						clé qui sert à chiffrer le message n&#x27;est pas la même que celle qui sert à déchiffrer.</p>
+					<p>Cet algorithme est lourd et compliqué
+						mathématiquement, il transforme le message dans son ensemble. Il est <strong>impossible de
+							procéder dans l&#x27;autre</strong> sens si on n&#x27;a pas la clé de déchiffrage.
+					</p>
+					<div class="alinea">
+						<p><em>Par exemple, si on ne possède que la
+								clé de chiffrement, on peut chiffrer des messages mais pas les déchiffrer, il faut une
+								autre clé pour ça.</em></p>
+					</div>
+				</div>
+				<div style="width:50%" class="column">
+					<img style="height: auto;" src="/img/crypt-key.svg" alt="Image clé de cryptage" />
+				</div>
+			</div>
+			<p><strong>Dans le cas d’une transaction de monnaie
+					cryptographique :</strong></p>
+			<p>Chaque utilisateur a une clé de chiffrement unique
+				privée et une clé de déchiffrement qui est publique, lorsque l’utilisateur affecte le réseau de part une
+				transaction avec quelqu’un d’autre, la transaction est chiffrée par sa clé, mais elle peut être
+				déchiffrée que par la clé de déchiffrement publique.</p>
+			<p>On est certain que c’est l’utilisateur qui a inscrit
+				cette transaction <strong>puisque personne d’autre n’est capable de chiffrer de cette manière</strong>
+				et donc c&#x27;est ça qui fournit l&#x27;authentification.</p>
+			<p>Les transactions sont donc impossibles à falsifier
+				sans posséder la clé privée mais elle sont aussi impossibles à répudier; une fois avoir payé, impossible
+				de nier l&#x27;avoir fait.
+			</p>
+
+			<div class="alinea">
+				<p><em>Donc en pratique pour échanger des Bitcoin, il
+						faut créer un compte et vous recevez un identifiant, une clé privée que vous gardez pour vous,
+						et une clé publique qui sera connue de tous les nœuds du réseau, La clé privée vous permet
+						d&#x27;authentifier vos transactions.</em></p>
+			</div>
+			<p><strong>Malheureusement, un problème subsiste, il y a
+					plein de copies de la base de données.</strong></p>
+
+			<h3 id="partie-3">Synchronisation et partage d’informations</h3>
+			<p><strong>Comment fait ce réseau pour communiquer et se
+					synchroniser?</strong>
+            </p>
+			<div class="alinea">
+				<p>Il peut y avoir des conflits (deux transaction en
+					même temps créant un duplicata…)</p>
+			</div>
+			<p>Chaque <mark class="highlight-orange">nœud </mark>du
+				réseau enregistre les nouvelles transactions dont il a connaissance, puis il la partage avec les autres,
+				tous les nœud possèdent une liste de transactions en attentes qui peuvent être légèrement différentes
+				les unes des autres.</p>
+			<p>Puis périodiquement, environ toutes les <mark
+					class="highlight-orange">10 minutes</mark>, il y a un des nœuds du réseau dont les transactions en
+				attente sont déclarés &quot;<mark class="highlight-orange">validées</mark>&quot; et tout les autres
+				nœuds se <mark class="highlight-orange">synchronisent dessus</mark>. Ce groupe de transactions est
+				appelé &quot;<mark class="highlight-orange">un bloc</mark>&quot;.</p>
+			<p>La liste des transactions validées se présente sous la
+				forme d&#x27;une suite de blocs rafraichit toutes les 10 minutes, c’est la chaîne de blocs ou “<mark
+					class="highlight-orange">blockchain</mark>”.
+            </p>
+			<img style="width:100%" src="/img/blockchain.png" alt="Blockchain"/>
+			<p>Pour trouver quel sera le prochain nœud sur lequel
+				tout les autres se synchroniseront, un <mark class="highlight-orange">identifiant </mark>lui est
+				attribué.</p>
+			<p>Cette identifiant résulte d’un procédé complexe
+				résultant de conditions imposés et qui demande de nombreux efforts de calculs informatiques…</p>
+			<p>
+			</p>
+
+			<h3 id="partie-4">Trouver un identifiant au bloc pour agrandir la chaine.</h3>
+			<div class="column-list">
+				<div style="width:56.25%" class="column">
+					<p>Pour trouver un identifiant à chaque nouveau
+						bloc de la blockchain, le principe du <mark class="highlight-orange">hachage </mark>va être
+						utilisé.
+					</p>
+					<div class="alinea">
+						<p><strong>Tout d’abord il faut connaitre ce
+								qu’est la fonction de hachage</strong></p>
+						<p>La fonction de hachage transforme une
+							chaine de caractère de n’importe quel longueur en une autre de longueur fixe. Le moindre
+							changement de la chaine d’entrée provoque un grand changement dans le résultat de la
+							fonction, ainsi, il suffit qu’un seul caractère, provenant d’un long texte, change pour que
+							le résultat soit complètement diffèrent.</p>
+					</div>
+				</div>
+				<div style="width:43.75%" class="column">
+					<img style="height: auto;" src="/img/hash.png" alt="Hash" />
+				</div>
+			</div>
+			<p>Un fichier contenant toutes les transactions qui vont
+				être validées ainsi que l&#x27;identifiant du bloc précédent et le tout sera ensuite “<mark
+					class="highlight-orange">haché</mark>”.
+				Est alors obtenu une suite de caractères qui va être utilisée comme identifiant.
+				<strong>Une chaine est définie comme telle lorsque l&#x27;identifiant d&#x27;un bloc sert à calculer
+					l&#x27;identifiant du suivant</strong>
+			</p>
+			<p><strong>L&#x27;intérêt de ce système, c&#x27;est de
+					protéger la base de données contre la moindre modification.</strong></p>
+			<h3 id="partie-5">Pourquoi la monnaie est-elle sécurisé</h3>
+			<p>Si quelqu’un veut changer une transaction, cela va
+				complètement changer le hachage et donc changer l&#x27;identifiant du bloc, mais comme
+				l&#x27;identifiant du bloc est utilisé dans le hachage du bloc suivant, il faut aussi changer
+				l&#x27;identifiant du bloc suivant et ainsi de suite dans toute la chaîne.
+			</p>
+			<div class="alinea">
+                <img style="width:95%" src="/img/bloc_id.png" alt="Hash devient ID de bloc"/>
+				<p>Donc impossible d&#x27;aller changer une
+					transaction dans le passé sans avoir à recalculer tous les identifiants de tous les blocs qui sont
+					arrivés depuis (sachant qu’il y en a un toute les 10 minutes).</p>
+			</div>
+			<p>En plus de tout cela, d’autre conditions vont être
+				ajoutés à l’équation pour savoir qui va être le prochain nœud, le tout étant pensé pour que l’ensemble
+				du réseau de nœud et de leur puissance de calcul puisse trouver un résultat a cette équation en moyenne
+				toute les 10 minutes.</p>
+			<div class="column-list">
+                <div style="width:52%" class="column">
+                    <img style="width:336px" src="/img/crypto-mining.jpg" alt="">
+				</div>
+				<div style="width:50%" class="column">
+					<p>Cela résout en grande parti les tentatives de
+						fraudes,<strong> car la capacité a frauder devient liée a la puissance de calcul dont on dispose
+						</strong>(méthode de vérification appelée “<mark class="highlight-orange">proof of
+							work</mark>”), or, trouver de la ressource de calcul (des processeurs puissants, des
+						infrastructures…) est très vite couteux, voir impossible car il faudrait disposer d’un peu plus
+						de 50% de la puissance global de calcul des nœuds du réseau (provenant du monde entier) pour
+						réussir à tromper l’algorithme.</p>
+				</div>
+			</div>
+			<h3 id="partie-6">Mode de création du Bitcoin</h3>
+			<p>Il faut savoir que lorsqu’un bloc est <mark
+					class="highlight-orange">validé</mark>, donc que la machine arrive à résoudre le problème
+				mathématique complexe, il est <mark class="highlight-orange">rémunéré</mark>, c’est d’ailleurs
+				<strong>l’unique mécanisme de création de nouveaux Bitcoin</strong>, c’est pour cette rémunération que
+				ceux qui le veulent participent à la sécurisation du réseau, <strong>on les appelle les “</strong><mark
+					class="highlight-orange"><strong>mineurs</strong></mark><strong>”</strong> (référence aux mineurs
+				qui cherchaient l’or et ainsi contribuer a augmenter leur masse monétaire).</p>
+			<p>Contrairement à la monnaie classique, le bitcoin a un
+				nombre fixe d’unités : il a été décidé qu’il n’y aurait que <mark class="highlight-orange">21 millions
+					de bitcoins</mark> produits. C’est cette particularité qui en fait une denrée rare, comme l’or : il
+				y a une limite. Et une fois qu’elle sera atteinte, il n’y aura plus jamais de nouveau bitcoin miné.
+				C’est cette notion de rareté qui confère à un produit ou à un métal sa valeur. C’est pour réussir à
+				conférer cet aspect au bitcoin que <mark class="highlight-orange">Satoshi Nakamoto</mark> a décidé
+				d’instaurer une limite au bitcoin, pour créer de la valeur. Cette limite de bitcoin a été insérée dans
+				le code de la blockchain, et ne pourra<mark class="highlight-orange"> jamais être transgressée</mark>.
+			</p>
+			<p>Tous les quatre ans a lieu un événement que les
+				mineurs de bitcoin attendent : le <mark class="highlight-orange">Halving</mark>. Protocole inscrit dans
+				le code du bitcoin, il <mark class="highlight-orange">divise </mark>tous les quatre ans la somme de la
+				<mark class="highlight-orange">récompense </mark>des mineurs par <mark
+					class="highlight-orange">2</mark>. Le dernier Halving datant du 11 mai 2020, a fait passer cette
+				récompense de 12,5 à 6,25 Bitcoin. Il s’agit du <mark class="highlight-orange">3ème</mark> Halving
+				depuis la création. Il permet de réguler dans le <mark class="highlight-orange">temps </mark>la valeur
+				maximale ainsi que la quantité de rémunération totale, fixé à environ <mark class="highlight-orange">21
+					000 000 de Bitcoin</mark> atteint en 2140.</p>
+			<p>
+			</p>
+
+            <p class="date">Publié le 19/01/2022</p>
+        </article>
+
+
+        <section class="selection_article">
+            <div class="bouton">
+                <div class="bouton_precedent">
+                    <a href="../article-1/">
+                        <div>
+                            <div class="fleche">
+                                <div class="fleche_part1"></div>
+                                <div class="fleche_part2"></div>
+                            </div>
+                        </div>
+                        <p>Article Précédent</p>
+                    </a>
+                </div>
+                <div class="bouton_suivant">
+                    <a href="../article-3/">
+                        <div>
+                            <div class="fleche">
+                                <div class="fleche_part1"></div>
+                                <div class="fleche_part2"></div>
+                            </div>
+                        </div>
+                        <p>Article Suivant</p>
+                    </a>
+                </div>
+            </div>
+
+            <h2>Tous nos articles</h2>
+            <div class="carousel">
+                <article class="sous_article">
+                    <a href="teste">
+                        <img src="/img/Image_Article_1.jpg" alt="Wallet">
+                        <span>Aut quas vero 33 aperiam</span>
+                        <h3>Ad rerum molestiae quo illum</h3>
+                        <p>Lorem ipsum dolor sit amet. Ut impedit harum et sint eius ut deserunt sunt ut delectus
+                            atque
+                            et dignissimos esse. </p>
+                    </a>
+                </article>
+                <article class="sous_article ">
+                    <a href="teste">
+                        <img src="/img/Image_Article_2.jpg" alt="Wallet">
+                        <span>Aut quas vero 33 aperiam</span>
+                        <h3>Ad rerum molestiae quo illum</h3>
+                        <p>Lorem ipsum dolor sit amet. Ut impedit harum et sint eius ut deserunt sunt ut delectus
+                            atque
+                            et dignissimos esse. </p>
+                    </a>
+                </article>
+                <article class="sous_article ">
+                    <a href="teste">
+                        <img src="/img/Image_Article_3.jpg" alt="Wallet">
+                        <span>Aut quas vero 33 aperiam</span>
+                        <h3>Ad rerum molestiae quo illum</h3>
+                        <p>Lorem ipsum dolor sit amet. Ut impedit harum et sint eius ut deserunt sunt ut delectus
+                            atque
+                            et dignissimos esse. </p>
+                    </a>
+                </article>
+                <article class="sous_article ">
+                    <a href="teste">
+                        <img src="/img/Image_Article_4.jpg" alt="Wallet">
+                        <span>Aut quas vero 33 aperiam</span>
+                        <h3>Ad rerum molestiae quo illum</h3>
+                        <p>Lorem ipsum dolor sit amet. Ut impedit harum et sint eius ut deserunt sunt ut delectus
+                            atque
+                            et dignissimos esse. </p>
+                    </a>
+                </article>
+                <article class="sous_article ">
+                    <a href="teste">
+                        <img src="/img/Image_Article_5.jpg" alt="Wallet">
+                        <span>Aut quas vero 33 aperiam</span>
+                        <h3>Ad rerum molestiae quo illum</h3>
+                        <p>Lorem ipsum dolor sit amet. Ut impedit harum et sint eius ut deserunt sunt ut delectus
+                            atque
+                            et dignissimos esse. </p>
+                    </a>
+                </article>
+                <article class="sous_article ">
+                    <a href="teste">
+                        <img src="/img/Image_Article_1.jpg" alt="Wallet">
+                        <span>Aut quas vero 33 aperiam</span>
+                        <h3>Ad rerum molestiae quo illum</h3>
+                        <p>Lorem ipsum dolor sit amet. Ut impedit harum et sint eius ut deserunt sunt ut delectus
+                            atque
+                            et dignissimos esse. </p>
+                    </a>
+                </article>
+            </div>
+        </section>
+        <footer>
+            <div>© 2022 - Théo Vidal, Titouan Lacombe-- Fabre</div>
+            <div></div>
+            <div>
+                <div><a href="../a-propos">A propos</a></div>
+                <div><a href="../sources">Bibliographie</a></div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>

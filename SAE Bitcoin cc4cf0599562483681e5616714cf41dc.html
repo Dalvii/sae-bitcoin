@@ -1,673 +1,1615 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SAE Bitcoin</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	text-indent: -1.7em;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-}
-
-.simple-table-header {
-	background: rgb(247, 246, 243);
-	color: black;
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="870952ef-9ec5-4e74-a8ed-579c9bbdac85" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1543699539-33a389c5dcfe?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🪙</span></div><h1 class="page-title">SAE Bitcoin</h1></header><div class="page-body"><h1 id="c4b896aa-1aa0-4deb-8b07-00b8f25bc993" class="">Quelles sont les fonctions réelles du Bitcoin comparativement aux devises ?</h1><p id="baa30e45-0cca-4d9c-99ea-14602d9336c7" class="">Aujourd’hui, 90% des échanges monétaire sont électronique, le reste représente l’argent circulant en liquide.</p><p id="93130bd9-6250-4ce9-8628-80f88f3140d2" class="">Toute cette monnaie n&#x27;existe que dans les livres de comptes des banques, évidemment aujourd&#x27;hui, ce n&#x27;est pas un vrai livre, c&#x27;est une base de données récapitulant toutes les transactions effectuée. Le problème est que si cette base de donnée disparait pour une quelconque raison (piratage, incidents…), l’argent s’envolera. Bien sur, pour éviter ce genre de problème, les banques sont sécurisé et ont des copies de ces bases de données.</p><p id="e4eabb68-f80e-444a-a321-7619cba68ab1" class="">Le Bitcoin est une monnaie <mark class="highlight-orange">cryptographique </mark>(cryptomonnaies) et <mark class="highlight-orange">virtuelle</mark>, avec pour intérêt d’être totalement <mark class="highlight-orange">Peer-to-Peer </mark>et <mark class="highlight-orange">décentralisé</mark>. Le Bitcoin possède lui aussi une base de donnée contenant toutes les transactions effectués du nom de <mark class="highlight-orange"><span style="border-bottom:0.05em solid">blockchain</span></mark>. Mais en opposition avec les banques habituelle le Bitcoin est:<div class="indented"><ul id="531d6529-099f-4b01-97b1-28e86c9133d6" class="bulleted-list"><li style="list-style-type:disc"><strong><mark class="highlight-orange">Anonyme</mark></strong><mark class="highlight-orange"> </mark>car il répertorie ses transactions anonymement, seul des montants et des identifiants apparaissent mais pas les noms,</li></ul><ul id="f7f419ee-fe70-49e9-a64f-08470f02d7ca" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><strong>Opensource</strong></mark>, tout le monde le fonctionnement de l’algorithme ainsi que les transactions effectués,</li></ul><ul id="27683dd2-3424-4fa0-b50a-16cacc527cfb" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><strong>Décentralisé</strong></mark>, sa base de donnés n’est pas sauvegardé qu’a un seul endroit (comme les banques) mais mais par tout les acteurs connecté au réseau Bitcoin,</li></ul><ul id="0da63e5f-8bff-484f-9d0c-9d77cb1da448" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><strong>Inviolable</strong></mark>, il est impossible de corrompre les livres de comptes grâce a la technologie <mark class="highlight-orange"><span style="border-bottom:0.05em solid">blockchain</span></mark>.  </li></ul></div></p><p id="08139049-7312-4f70-8f5b-7396c8e7a628" class="">
-</p><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="00f999f6-9cef-4311-b813-4419a35fcfb0"><div style="font-size:1.5em"><span class="icon">#️⃣</span></div><div style="width:100%">La <mark class="highlight-orange">décentralisation </mark>du Bitcoin signifie qu’il n’y a pas d’entité comme une banque central qui vas contrôlée le cours de celle ci. Cette décentralisation permet donc au Bitcoin d’être dis totalement <mark class="highlight-orange">Peer-to-Peer</mark> (P2P).</div></figure><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="3002a2ba-c573-4d0e-a93e-35ef163741a2"><div style="font-size:1.5em"><span class="icon">#️⃣</span></div><div style="width:100%">Le <mark class="highlight-orange">Peer-to-Peer</mark> ou paire à paire en français a pour principe de ne pas passer par un intermédiaire lors d’une transaction. Aujourd’hui tout transaction autre qu’en liquide, vont passée par une ou plusieurs banques.</div></figure><figure id="cc4cf059-9562-4836-81e5-616714cf41dc" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/scma_transaction.svg"><img style="width:672px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/scma_transaction.svg"/></a></figure><p id="fef6c494-7542-4e00-80d1-f118eda93dfe" class="">
-</p><p id="77d7402e-b8a0-407a-98a1-33b6ca9b9f81" class="">Pour le Bitcoin le fonctionnement est totalement différent, chaque transaction passe par le réseau Bitcoin. Ce reseau sert à valider la transaction afin d’éviter toute fraude. Bien que nous pouvons penser que le ce réseau est centralisé ça composition nous démontre l’inverse comme expliqué dans <mark class="highlight-pink">ARTICLE 2</mark>.</p><p id="e1ac782e-1f8f-4794-ab73-4c355d91655d" class="">Pour comparer plus simplement le Bitcoin avec des devises étatiques, quelques questions essentiels se posent.</p><table id="12468509-7c71-4241-8d1b-5b49d7905d51" class="simple-table"><tbody><tr id="78900cff-ac9f-4797-872a-314619f28835"><td id="KpRQ">Devises étatiques </td><td id="P_MR">Bitcoin</td></tr><tr id="81088547-559d-4f3e-ba3f-6a396fd032c1"><td id="KpRQ">Qui les gèrent ?</td><td id="P_MR"></td></tr><tr id="64ed070c-4571-4bfc-b9c2-5ab66758a825"><td id="KpRQ">Les banques centrales qui les émettent.</td><td id="P_MR">Le réseau d’ordinateurs qui s’auto-gère grâce à un protocole open-source.</td></tr><tr id="96aa0f77-ef9a-428d-a677-e0579f7061de"><td id="KpRQ">Comment sont évaluer leur valeur ?</td><td id="P_MR"></td></tr><tr id="9d9bc55a-c769-42be-a5d4-3e09e2c30aeb"><td id="KpRQ">Principalement basée sur la confiance dans le pays régisseur.</td><td id="P_MR">Basée sur l’offre et la demande.</td></tr><tr id="f8ba6bdb-89db-4c3c-a486-f4d2d5fad61b"><td id="KpRQ">Comment est-il sécurisée ?</td><td id="P_MR"></td></tr><tr id="9ad4ba3f-1089-4f9e-acc4-458fe34cc2ca"><td id="KpRQ">Protégé par les banques, agréée par le gouvernement. </td><td id="P_MR">Sécurisé par un algorithme de cryptographie.</td></tr><tr id="10d18531-0203-4593-888e-1cdbffaf592a"><td id="KpRQ">Existe-il une forme physique ?</td><td id="P_MR"></td></tr><tr id="e9fb2e3a-ced8-4c97-8f7b-12f362bbfae9"><td id="KpRQ">Oui</td><td id="P_MR">Non</td></tr><tr id="250c40dc-401e-4d9a-a494-52ea5e4b1bf6"><td id="KpRQ">Pouvons nous achetez des choses avec ?</td><td id="P_MR"></td></tr><tr id="c25d2fce-598f-429d-acd1-8007d28a8f03"><td id="KpRQ">Oui, principalement dans les pays d’où est issue la devise</td><td id="P_MR">Oui, mais seulement si le marchant l’accepte.</td></tr><tr id="aa3c290e-f748-4fde-b023-3c5476cff3d2"><td id="KpRQ"></td><td id="P_MR"></td></tr></tbody></table><p id="61e0f9aa-6fab-4c76-bdcb-fd5c09488b00" class="">
-</p><p id="905dd0b5-7116-4b47-a769-b4f4410b1f54" class=""><a href="https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/">https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/</a></p><h1 id="9a609328-dbda-447a-a248-c2c02832f02c" class="">Quelle est le mode de création et de circulation du bitcoin ?</h1><h3 id="bb79ee1b-9aa0-4200-92cc-d1ad4fa74619" class=""><strong>Pour aborder la circulation du bitcoin ainsi que son mode de création, il est indispensable d’expliquer les technologies derrière cette monnaie.</strong></h3><p id="8d413ccb-cb89-4923-a17f-caed1becc98b" class="">La base de données de toutes les transactions n&#x27;est pas gérée par une instance centrale
-comme une banque traditionnel, mais partagée dans un immense réseau <mark class="highlight-orange">Peer to Peer</mark>, tout ce qui est connecté au réseau Bitcoin peut héberger une copie de la base de données qui contient toutes les transactions.</p><p id="63b71c5e-dd3d-4107-908c-8d77c0dd1907" class="">Cependant la banque sert à deux chose aujourd’hui : à identifier les <mark class="highlight-orange">auteurs </mark>des transactions ainsi que de <mark class="highlight-orange">vérifier les soldes</mark>, et accessoirement, d’empêcher tout <mark class="highlight-orange">modification illégale</mark>.</p><p id="93412270-36f2-4807-baf5-ba3dc0907aba" class=""><strong>Pour résoudre ces problèmes, le Bitcoin se base sur deux technologies: </strong><mark class="highlight-orange"><strong>la signature électronique</strong></mark><strong> et la </strong><mark class="highlight-orange"><strong>blockchain</strong></mark><strong>.</strong></p><h3 id="a2bb11c5-38d0-4da4-816b-6d137332d7be" class="">Mécanisme et sécurisation du Bitcoin.</h3><p id="7b5dc0d5-746d-4594-8e94-da35553787af" class=""><strong>Pour être certains des auteurs des transactions, le principe de </strong><mark class="highlight-orange"><strong>cryptographie asymétrique</strong></mark><strong> est utilisé.</strong></p><p id="47ccd049-d153-4e15-a8ab-c5bb50300872" class="">En cryptographie généralement<mark class="highlight-orange"> </mark>on utilise une clé qui permet de chiffrer et déchiffrer des messages. Dans les techniques de chiffrage des plus simples, on ne peut déchiffrer un message que si on possède la clé qui a servi à le chiffrer.</p><div id="4a28444d-f1fe-4284-b1d5-679b1535a4f4" class="column-list"><div id="3a761836-302d-4e28-ba54-5daa367bc13d" style="width:50%" class="column"><p id="9def801b-c6ab-41c8-8cf1-e618d52c6664" class="">Mais il existe des systèmes de chiffrage plus sophistiqués comme ce qu&#x27;on appelle l&#x27;<mark class="highlight-orange">algorithme RSA</mark> qui sont <mark class="highlight-orange">asymétriques</mark>, c&#x27;est-à-dire la clé qui sert à chiffrer le message n&#x27;est pas la même que celle qui sert à déchiffrer.</p><p id="0c243e02-70a0-4f21-93b0-fe1e90ceaf55" class="">Cet algorithme est lourd et compliquée mathématiquement, elle transforme le message dans son ensemble et <strong>impossible à faire dans l&#x27;autre</strong> sens si on n&#x27;a pas la clé de déchiffrage.<div class="indented"><p id="012b3733-8cd9-4224-a038-9dbd85005a9a" class=""><em>Par exemple, si on ne possède que la clé de chiffrement, on peut chiffrer des messages mais pas les déchiffrer, il faut une autre clé pour ça.</em></p></div></p></div><div id="a24f1354-f5af-4541-abf2-a30272ec1696" style="width:49.99999999999999%" class="column"><figure id="ceb0e643-0544-4633-8824-b2ae14aa6ba0" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled.png"><img style="width:384px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled.png"/></a></figure><figure id="dff2ea06-8b59-4e03-ac8d-99e3131fd155" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Explication_crypte.svg"><img style="width:900px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Explication_crypte.svg"/></a></figure></div></div><p id="6ed035f7-a426-412c-92bd-906aaab55705" class=""><strong>Dans le cas d’une transaction de monnaie cryptographique :</strong></p><p id="f306cc26-0813-4506-aa19-dcd689700c4d" class="">Chaque utilisateur a une clé de chiffrement unique privé et une clé de déchiffrement qui est publique, lorsque l’utilisateur affecte le réseau de part une transaction avec quelqu’un d’autre, la transaction est chiffré par sa clé, mais elle peut être déchiffré par la clé de déchiffrement publique.</p><p id="b71b3954-82d5-4185-8978-3d7a656b5af5" class="">On est certain que c’est l’utilisateur qui a inscrit cette transaction <strong>puisque personne d’autre n’est capable de chiffrer de cette manière</strong> et donc c&#x27;est ça qui fournit l&#x27;authentification.</p><p id="d072a8d8-1b5e-497e-8782-10684d052d34" class="">Les transactions sont donc impossibles à falsifier sans posséder la clé privée mais elle sont aussi impossibles à répudier; une fois avoir payé, impossible de nier l&#x27;avoir fait.<div class="indented"><p id="4873f195-19fb-4e20-a0c7-f9c178150541" class=""><em>Donc en pratique pour échanger des Bitcoin, il faut créer un compte et vous recevez un identifiant, une clé privée que vous gardez pour vous, et une clé publique qui sera connue de tous les nœuds du réseau, La clé privée vous permet d&#x27;authentifier vos transactions.</em></p></div></p><p id="cdd7c4aa-7330-462e-b38b-5575bdf4fb9d" class="">
-</p><p id="ec5420e2-c7c3-4ebe-b6d5-1bd901667074" class=""><strong>Malheureusement, un problème subsiste, il y a plein de copies de la base de données.</strong></p><h3 id="8ffc3495-3eb3-4556-852b-a8a0737e9039" class="">Synchronisation et partage d’informations</h3><p id="9d240d98-2a79-4466-94c5-6ebc6117fc22" class=""><strong>Comment fait ce réseau pour communiquer et se synchroniser?</strong><div class="indented"><p id="a52da5e2-6144-4a6c-b9a0-e77e3757e31d" class="">Il peut y avoir des conflits (deux transaction en même temps créant un duplicata…)</p></div></p><p id="a99adc61-49cd-412c-b6b8-77918043277b" class="">Chaque <mark class="highlight-orange">nœud </mark>du réseau enregistre les nouvelles transactions dont il a connaissance, puis il la partage avec les autres, tous les nœud possèdent une liste de transactions en attentes qui peuvent être légèrement différente les unes des autres.</p><p id="041d90e4-4f85-4024-b561-0e89eb6644da" class="">Puis périodiquement, environ toutes les <mark class="highlight-orange">10 minutes</mark>, il y a un des nœuds du réseau dont les transactions en attente sont déclarés &quot;<mark class="highlight-orange">validées</mark>&quot; et tout les autres nœud se <mark class="highlight-orange">synchronise dessus</mark>. Ce groupe de transactions est appelé &quot;<mark class="highlight-orange">un bloc</mark>&quot;.</p><p id="d52c2883-f73d-442c-bc66-7a26ec88a08e" class="">La liste des transactions validés se présente sous la forme d&#x27;une suite de blocs rafraichit toutes les 10 minutes, c’est la chaîne de blocs ou “<mark class="highlight-orange">blockchain</mark>”.</p><figure id="903c8341-6128-4411-b5d6-6d5fe6ee3719" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%201.png"><img style="width:624px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%201.png"/></a></figure><p id="338c0345-bec8-492f-a411-c832b9fb53b3" class="">Pour trouver quel sera le prochain nœud sur lequel tout les autres se synchroniseront, un <mark class="highlight-orange">identifiant </mark>lui est attribué.</p><p id="7bf6d74a-ff7b-4aa5-8630-73490b54c623" class="">Cette identifiant résulte d’un procédé complexe résultant de conditions imposés et qui demande de nombreux efforts de calculs informatiques…</p><p id="d8365093-277d-413e-897a-a0826bf44c64" class="">
-</p><h3 id="1c46591b-aac7-49b4-beb1-3d7636a346c7" class="">Trouver un identifiant au bloc pour agrandir la chaine.</h3><div id="3fe0b8ca-106d-47d5-a689-c0d7483d4999" class="column-list"><div id="d605c585-74fe-4926-86e6-0de53b1ae4f3" style="width:56.25%" class="column"><p id="65d56162-f2ca-4942-8b39-1e43ca48ec23" class="">Pour trouver un identifiant à chaque nouveau bloc de la blockchain, le principe du <mark class="highlight-orange">hachage </mark>va être utilisé.<div class="indented"><p id="c84802b7-8622-4fcb-953b-072a527c650d" class=""><strong>Tout d’abord il faut connaitre ce qu’est la fonction de hachage</strong></p><p id="48347efa-2116-4b38-9b33-672a5bf1494d" class="">La fonction de hachage transforme une chaine de caractère de n’importe quel longueur en une autre de longueur fixe. Le moindre changement de la chaine d’entré provoque un grand changement dans le résultat de la fonction, ainsi, il suffit qu’un seul caractère provenant d’un long texte change pour que le résultat soit complètement diffèrent.</p></div></p></div><div id="96bf1a8c-3bba-41ae-99ed-6029acc6d98f" style="width:43.75%" class="column"><figure id="d8dd70c4-9d14-416b-b228-14c44c31a148" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%202.png"><img style="width:336px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%202.png"/></a></figure></div></div><p id="9f7dd9f2-1a64-4753-b0de-6e7d8645d5a4" class="">Un fichier contenant toutes les transactions qui vont être validés ainsi que l&#x27;identifiant du bloc précédent et le tout sera ensuite “<mark class="highlight-orange">haché</mark>”.
-Est alors obtenu une suite de caractères qui va être utilisé comme identifiant.
-<strong>Une chaine est défini comme tel lorsque l&#x27;identifiant d&#x27;un bloc sert à calculer l&#x27;identifiant du suivant</strong></p><p id="b761843d-2a43-4e84-8f91-7d839400da53" class=""><strong>L&#x27;intérêt de ce système, c&#x27;est de protéger la base de données contre la moindre modification.</strong></p><h3 id="3f74a313-cd72-48ae-b0bc-a9d541693fb1" class="">Pourquoi la monnaie est-elle sécurisé</h3><p id="28aff10d-fc52-4b31-86dc-926678211875" class="">Si quelqu’un veut changer une transaction, cela va complètement changer le hachage et donc changer l&#x27;identifiant du bloc, mais comme l&#x27;identifiant du bloc est utilisé dans le hachage du bloc suivant, il faut aussi changer l&#x27;identifiant du bloc suivant et ainsi de suite dans toute la chaîne.<div class="indented"><figure id="9b6892f6-b907-40e9-b0e2-f2dc87227050" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%203.png"><img style="width:480px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%203.png"/></a></figure><p id="a62db66b-52d3-4519-b59e-b92272ae5351" class="">Donc impossible d&#x27;aller changer une transaction dans le passé sans avoir à recalculer tous les identifiants de tous les blocs qui sont arrivés depuis (sachant qu’il y en a un toute les 10 minutes).</p></div></p><p id="ff4ac770-50ae-45dd-b8ca-c0c382e79fd9" class="">En plus de tout cela, d’autre conditions vont être ajoutés à l’équation pour savoir qui va être le prochain nœud, le tout étant pensé pour que l’ensemble du réseau de nœud et de leur puissance de calcul puisse trouver un résultat a cette équation en moyenne toute les 10 minutes.</p><div id="c9901cf3-f1cf-4cd5-a68b-975876d0f11d" class="column-list"><div id="09ae88f1-250a-4919-ab8a-2303d6d6c37a" style="width:50%" class="column"><p id="f9e6fb78-b38e-4516-be60-a39d0735c1a6" class="">Cela résout en grande parti les tentatives de fraudes,<strong> car la capacité a frauder devient liée a la puissance de calcul dont on dispose </strong>(méthode de verification appelé “<mark class="highlight-orange">proof of work</mark>”), or, trouver de la ressource de calcul (des processeurs puissants, des infrastructures…) est très vite couteux, voir impossible car il faudrait disposer d’un peu plus de 50% de la puissance global de calcul des nœuds du réseau (provenant du monde entier) pour reussir à tromper l’algorithme.</p></div><div id="3220a333-c9e2-4fc9-989e-1b711490ac19" style="width:50%" class="column"><figure id="c7953a78-4005-43a9-bf32-3f8a0f948e9d" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%204.png"><img style="width:336px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%204.png"/></a></figure></div></div><h3 id="a67006e5-b509-4bff-9815-57b6b07c0429" class="">Mode de création du Bitcoin</h3><p id="ca7eb387-13ff-4ca1-8afb-952112f01e46" class="">Il faut savoir que lorsqu’un bloc est <mark class="highlight-orange">validé</mark>, donc que la machine arrive à résoudre le problème mathématique complexe, il est <mark class="highlight-orange">rémunéré</mark>, c’est d’ailleurs <strong>l’unique mécanisme de création de nouveaux Bitcoin</strong>, c’est pour cette rémunération que ceux qui le veulent participent à la sécurisation du réseau, <strong>on les appelle les “</strong><mark class="highlight-orange"><strong>mineurs</strong></mark><strong>”</strong> (référence aux mineurs qui cherchaient l’or et ainsi contribuer a augmenter leur masse monétaire).</p><p id="7ec8f2af-005f-442f-b2ce-7b3d2ecedd65" class="">Contrairement à la monnaie classique, le bitcoin a un nombre fixe d’unités : il a été décidé qu’il n’y aurait que <mark class="highlight-orange">21 millions de bitcoins</mark> produits. C’est cette particularité qui en fait une denrée rare, comme l’or : il y a une limite. Et une fois qu’elle sera atteinte, il n’y aura plus jamais de nouveau bitcoin miné. C’est cette notion de rareté qui confère à un produit ou à un métal sa valeur. C’est pour réussir à conférer cet aspect au bitcoin que <mark class="highlight-orange">Satoshi Nakamoto</mark> a décidé d’instaurer une limite au bitcoin, pour créer de la valeur. Cette limite de bitcoin a été insérée dans le code de la blockchain, et ne pourra<mark class="highlight-orange"> jamais être transgressée</mark>.</p><p id="f4288864-8049-453f-8394-82edf2b0ae64" class="">Tous les quatre ans a lieu un événement que les mineurs de bitcoin attendent : le halving. Protocole inscrit dans le code du bitcoin,</p><p id="dfc07ff7-655a-4a6b-be1b-25c718fd0dc7" class="">
-</p><h1 id="9f605b4a-66a3-4118-a175-be87c541a08c" class="">Quelle sont ses conséquences écologiques ?</h1><p id="fd206a89-6575-4839-a262-0ef1d1d8c005" class=""><a href="https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin">https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin</a></p><p id="f637b3a6-78c6-4fdb-909a-baf199425c39" class=""><a href="https://digiconomist.net/">https://digiconomist.net/</a></p><p id="85be59bb-230f-4b02-813a-cb884c19bb7c" class="">Pour comprendre les conséquences écologiques du Bitcoin, il faut tout d’abords comprendre qu’es-que va consommer le Bitcoin afin de fonctionner. Étant totalement numérique le Bitcoin consomme principalement de l’électricité. Comme expliqué précédemment les validations de bloc sont effectuées par des calculateurs très puissant plus couramment appelé carte graphique. Nous allons donc voir quelle est l’impact du Bitcoin sur la consommation énergétique de ces cartes graphiques puis sur la génération de déchets électroniques. </p><p id="01124a90-b680-4f18-a7d1-b3f8ab9267de" class="">Calculé la consommation énergétique engendré par le Bitcoin est loin d’être aisée. En effet le Bitcoin étant totalement décentralisé tout le monde peut participer au réseau et donc ne pas être recensé comme une entreprise ayant comme activité de miné. De plus les mineurs peuvent changer de réseau et miné d’autre cryptomonnaies en fonction de leurs rendements voir tout simplement arrêté. </p><p id="eadbe7a0-aee1-4903-99a8-7fea2f0b1999" class="">Il est donc très compliqué de calculé la consommation énergétique. Plusieurs étude ont tout de même était mené, certaine se basant sur le site Digiconomics nous montre une consommations énergétique extrêmement élevé, mais de nouvelle étude comme celle de Marc Bevant ou de l’université technique de Munich nous montres des résultats assez différents. <div class="indented"><p id="ca21c22f-7d24-4c4f-aee4-53693d3f75f1" class="">En janvier 2018, les calculs de Marc Bevand, fondés sur la consommation des ordinateurs de minage, mènent à une fourchette de 14 à 27 TWh/an, avec une estimation moyenne à 18 TWh/an pour la consommation globale de Bitcoin. Ce qui, en comparaison, est autant que la consommation de l’Angola. 
-En juin 2019 l’université technique de Munich établit que la consommation électrique annuelle de Bitcoin s’élève à 45,8 TWh. Le Bitcoin a généré de 2016 à 2018 entre 3 et 15 millions de tonnes de CO2, à comparer aux émissions mondiales de CO2, qui s’élèvent à 37 000 millions de tonnes. </p><p id="d8f8ffb8-df9e-4f93-b059-03ca882ed84b" class=""><em>« La production d’électricité peut augmenter tout en maintenant un impact minimal sur l’environnement »</em> Katrina Kelly-Pitou, spécialiste des grands systèmes électriques</p></div></p><p id="8a514bd0-6a69-4cc8-afc5-d90edd0ca682" class="">Les cartes graphiques nécessaire à la validation des blocs sont non seulement extrêmement couteuse a fabriqué mais génère aussi des déchets électroniques à leurs mort. Comme pour la consommation électrique il est très dur d’estimé </p><p id="176430a6-930e-49d8-af9a-bf088cb2e314" class="">Nous pouvons donc observer que le Bitcoin consomme énormément d’électricité mais comparativement à des géants mondiaux du secteurs du paiement et des transactions comme VISA ou Mastercard, la consommation du bitcoin serais négligeable, elle représenterait entre 0.15% et 0.35% de la consommation mondial. De mène sa pollution est plutôt négligeable face au nombre de distributeur automatique de billets (ATM) et de camions blindés nécessaire à les alimenter.</p><h1 id="7caaee79-64a3-4aad-baa7-395fbeecb780" class="">Quelles sont les raisons du succès du Bitcoin ?</h1><h3 id="a9dce900-9f8e-4dad-9cd5-be482a848108" class="">D’où viens le Bitcoin ?</h3><p id="b3106867-50ba-4c13-a1fd-e37a3ac49842" class=""><strong>Pour comprendre la raison du succès du bitcoin, il faut tout d’abord comprendre le mouvement qui a inspiré sa création. </strong></p><div id="53baa508-48be-4217-89a4-a895e3a1a659" class="column-list"><div id="901815f9-113e-4928-8245-3b5f0882ac02" style="width:68.75%" class="column"><p id="8aa49e89-be0c-4373-ad80-9b8c997077a7" class="">Tout d’abord, le bitcoin le bitcoin viens d’un mouvement datant des <mark class="highlight-orange">années 80/90</mark> qui existe toujours du nom de<mark class="highlight-orange"> CypherPunk</mark>. Le mouvement CypherPunk a pour idée principale de protéger <mark class="highlight-orange">la vie privée</mark> de chacun sur le « <mark class="highlight-orange">réseau</mark> » se qui signifie protéger nos informations personnelles sur internet. Le fait que les monnaies étatiques sont émises par les banques central/états (union) toutes transactions sur internet ou via une carte de crédit est vue par le gouvernement, pour les <mark class="highlight-orange">Cyphers</mark> c’est une violation de la vie privée d’où l’idée de la blockchain ou toute personne moral ou physique <mark class="highlight-orange">est anonymes</mark>. </p></div><div id="90820163-41aa-4474-bb15-7b81d7a317bf" style="width:31.249999999999993%" class="column"><figure id="dd1c9c3e-0a2e-4e37-b693-c048589d15be" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Que-son-los-Cypherpunk_(2).jpg"><img style="width:422px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Que-son-los-Cypherpunk_(2).jpg"/></a></figure></div></div><p id="27b64c32-9f98-4b99-bfa6-2b98f7fb42a7" class="">Le bitcoin est donc par ailleurs totalement détaché de tout états ou institution. La seule personnes ou groupe de personne pouvant avoir de l’influence serais <mark class="highlight-orange">Satoshi Nakamoto</mark> mais à l’heure d’aujourd’hui personne ne sait qui cela peut être, cela donne une véritable force au bitcoin car personne n’a de moyen de pression direct sur cette monnaie. </p><p id="4a8cd695-bcc0-407d-8a60-25305016d961" class="">Il est tout de même évident qu’un état puisse interdire cette monnaie mais elle est impossible à « arrêté » tant quelle sera utilisée et soutenue par <mark class="highlight-orange">des mineurs</mark> pour valider les transactions. Mais des moyens de régulation commence à être mise en place par les gouvernements comme expliqué <mark class="highlight-pink">(ARTICLE 6).</mark> Ces régulation vont d’autant plus donné de la <mark class="highlight-orange">confiance</mark> en le Bitcoin et tout autre cryptomonnaies.</p><h3 id="b2f2b084-cff4-468b-8ab3-3f08702a2cbb" class="">Des caractéristiques attrayante</h3><p id="ad75c19d-6f78-415a-924d-5b140eb4c13d" class="">Une seconde raison et celle de <mark class="highlight-orange">l’appât du gain</mark>, effectivement le Bitcoin étant extrêmement volatile et ayant un nombre limité de bitcoin comme l’or sur terre, lui procure une<mark class="highlight-orange"> tendance haussière à long terme</mark> pour le moment. </p><p id="df738a12-2dbf-4068-816b-fb6df0fe0d03" class="">De plus l’arrivé des <mark class="highlight-orange">ICO « Initial coin offering »</mark> étant des levais de fond via des cryptomonnaies est venue soutenir cette tendance. A la vue de ces caractéristiques énormément <mark class="highlight-orange">d’investisseur/trader</mark> se sont intéressée à lui afin d’y généré du bénéfice.</p><p id="de799421-77fd-4f03-bdbd-55ff02912cd2" class="">Une troisième raison du succès du bitcoin est sa <mark class="highlight-orange">sureté</mark> comme expliqué dans <mark class="highlight-pink">(METTRE 2eme ARTICLE EN LIEN)</mark> <strong>le bitcoin est tout simplement inviolable grâce à ce système de blockchain et de cryptographie empêchant</strong><strong><mark class="highlight-orange"> la double dépense</mark></strong>, ce qui permet d’avoir une entière confiance en cette monnaie. De plus cette technologie de décentralisation a permis de donnés naissance à se qu’on appelle le <mark class="highlight-orange">“web 3.0”</mark>. Le Bitcoin n’est pas seulement une cryptomonnaies parmi tant d’autre mais il est <mark class="highlight-orange">l’origine</mark> d’autre projet de cryptomonnaies tel que Ethereum, Solana et beaucoup d’autre.</p><h3 id="95cdd789-a1f8-48f2-b6be-fbae76daeaae" class="">Va t-il garder son succès ?</h3><p id="253e1cff-6677-46df-9d38-c52f2d840393" class="">Aujourd’hui bien qu’énormément de cryptomonnaies se basent sur la technologie cryptographique du Bitcoin, beaucoup de ces cryptomonnaies se tourne vers une nouvelle technologie de validation le <mark class="highlight-orange">Proof-of-Stake </mark>ou<mark class="highlight-orange"> POS</mark>. Cette nouvelle technologie est bien moins consommatrice d’énergie face au <mark class="highlight-orange">Proof-of-Work</mark> du Bitcoin et donc bien plus intéressante.<div class="indented"><p id="27b1ba5c-3c64-422b-bd4f-6f5e29ee7bd0" class=""><em>“Le Bitcoin est au cryptomonnaies ce qu’est l’or est au métaux” </em>Lacombe—Fabre Titouan</p></div></p><p id="a3c4d378-5da0-483c-bbb2-2979d6089561" class="">Le Bitcoin n’a donc pas seulement du succès pour ce qu’il est, mais aussi <mark class="highlight-orange">l’idéologie</mark> et la <mark class="highlight-orange">technologie</mark> qu’il apporte.</p><p id="86cc5bd8-97c6-467b-ac64-a62abb29e9c9" class="">
-</p><h1 id="18d7c94e-ec15-4bc6-85dc-e872680b2715" class="">Quelle place occupe le bitcoin parmi les titres spéculatifs ?</h1><p id="790df536-9984-4f91-9a19-d6a4c7cb1e60" class="">Pour parler des titres spéculatifs, il faut tout d’abord établir qu’est-ce qu’un titre spéculatif. Pour cela, nous allons définir qu’est-ce que<mark class="highlight-orange"> la spéculation.</mark></p><h3 id="15a7a3ce-69ce-4586-94d9-896770e5810b" class="">Qu’est ce que la spéculation ?</h3><p id="411b58ed-5d16-4a9f-8565-5f58447d8593" class="">Le concept de spéculation est encore très débattu. Étymologiquement, c’est une opération qui consiste à acheter un bien en vue de <mark class="highlight-orange">réaliser un bénéfice</mark> de sa revente ultérieure. Toutefois, dans le langage courant, cela s’apparente plutôt à un profit à <mark class="highlight-orange">court terme et à un gain rapide</mark>. Nous allons donc considérer que le la spéculation englobera <mark class="highlight-orange">les gains à court et long termes</mark> afin de répondre plus simplement à cette question.</p><p id="336a7782-ea3a-4f77-98e5-f705e15e6e2c" class="">Il existe<mark class="highlight-orange"> 3 grandes classes d’actifs </mark>:<div class="indented"><p id="c19803ad-cc07-484d-8495-888ba055afc2" class=""><strong>Les obligations,</strong> qui sont des <mark class="highlight-orange">dettes</mark>, est le type d’actif le plus représenté dans le monde. Les obligations sont notées par des lettres de la moins risquée à la plus risquée, comme nous pouvons le voir sur le tableau si-contre, qui représente le classement établi par l’entreprise <mark class="highlight-orange">Standard &amp; Poor&#x27;s</mark>. Ce tableau est un classement par risques des obligations. Plus la note du débiteur est basse, <mark class="highlight-orange">plus le taux d’intérêt</mark> de l’obligation demandé par le créditeur est élevé.</p><table id="c43c6df3-add1-442a-a1ec-3f4da771d052" class="simple-table"><tbody><tr id="bf23efee-39f8-4fe6-ad4e-2092f0515c8c"><td id="arq@">Signification de la note</td><td id="@uet">Standard &amp; Poor&#x27;s</td></tr><tr id="82e73f32-cd96-410a-a014-51cd5741fd2b"><td id="arq@">Première qualité</td><td id="@uet">AAA</td></tr><tr id="85e17690-87a4-42d3-8f8e-9a4478bd585c"><td id="arq@">Haute qualité</td><td id="@uet">AA+</td></tr><tr id="4ec952f2-ea25-4f37-beb8-87ce59225b3d"><td id="arq@"></td><td id="@uet">AA</td></tr><tr id="a3c1e440-c89b-47fe-ba6a-6522915eedc4"><td id="arq@"></td><td id="@uet">AA-</td></tr><tr id="9413e5fe-ba2d-4279-9f80-9221e7a4a16c"><td id="arq@">Qualité moyenne supérieur</td><td id="@uet">A+</td></tr><tr id="7d783baa-aec6-4496-a9aa-326cfca18dbd"><td id="arq@"></td><td id="@uet">A</td></tr><tr id="d6024b8d-4029-41ac-abc5-bd374d3d250e"><td id="arq@"></td><td id="@uet">A-</td></tr><tr id="31c37b8d-c5d0-47ae-9125-36e3fb6cc662"><td id="arq@">Qualité moyenne inférieur</td><td id="@uet">BBB+</td></tr><tr id="c0a9c3df-81e3-4b73-be8f-d1176df30cb5"><td id="arq@"></td><td id="@uet">BBB</td></tr><tr id="c815bb4c-2811-4237-91d0-70c27ca59439"><td id="arq@"></td><td id="@uet">BBB</td></tr><tr id="beb5f570-6f43-4176-a4cf-64ce7d9a36cc"><td id="arq@">Spéculatif</td><td id="@uet">BB+</td></tr><tr id="0bc0e8cb-18dc-49cc-82f4-f1e33807c4f3"><td id="arq@"></td><td id="@uet">BB</td></tr><tr id="752c4526-071f-43fc-9b18-bbb5aa544c5f"><td id="arq@"></td><td id="@uet">BB-</td></tr><tr id="0f4a3e95-b3a1-4174-8c47-2dd66cdb7230"><td id="arq@">Très spéculatif</td><td id="@uet">B+</td></tr><tr id="7b046964-146f-45bb-a140-7af43dfdd8d4"><td id="arq@"></td><td id="@uet">B</td></tr><tr id="564ced1f-1ed5-4d23-b90e-c31c33a1704a"><td id="arq@"></td><td id="@uet">B-</td></tr><tr id="8ff143e8-0247-4327-9e03-5a89ab65d3e3"><td id="arq@">Risque élevé</td><td id="@uet">CCC+</td></tr><tr id="103960ce-8222-41bd-b607-528d1b895ca0"><td id="arq@">Ultra spéculatif</td><td id="@uet">CCC</td></tr></tbody></table><p id="5b674fd4-b8b2-4909-8fe9-e0943eb961d0" class="">Nous pouvons voir que, d’après ce tableau, les obligations définies comme <mark class="highlight-orange">“spéculative”</mark> se trouvent à partir du niveau BB+. Plus le niveau descendra, plus il sera considéré comme spéculatif. En dessous de CCC, le risque est tel que peu d’investisseurs leur accorde de la confiance.</p><p id="b0edfd67-eb83-4280-ac47-bfda3cd4f811" class=""><strong>Les actions</strong> sont des parts de sociétés commerciales. Elles n’ont pas de classement définissant leur <mark class="highlight-orange">“risque”</mark> comme pour les obligations, mais il existe des indices comme le <mark class="highlight-orange">S&amp;P500</mark>, créé par <mark class="highlight-orange">Standard &amp; Poor’s</mark>. Cet indice<mark class="highlight-orange"> </mark>représente les 500 plus grandes sociétés commerciales américaines cotées en bourse. Il existe aussi l’indice du <mark class="highlight-orange">CAC40</mark> pour la France, qui représente les 40 plus grandes sociétés commerciales françaises. Elles peuvent aussi être classées par secteur comme le<mark class="highlight-orange"> Nasdaq</mark>,<mark class="highlight-orange"> </mark>représentant le secteur de la Tech. <div class="indented"><p id="f8343fdf-5875-4cf3-9f27-e4218dd76eaf" class=""><strong>Attention</strong>, ces indices ne garantissent en aucun cas la qualité des sociétés commerciales qui en font parties. Cependant, ces indices démontrent d’une certaine qualité de la part des sociétés commerciales.</p></div></p><p id="21aa0bda-724d-449f-a747-3db7e07e1896" class=""><strong>Les produits dérivés</strong> sont les actifs les plus compliqués à décrire parce qu’ils peuvent prendre presque toutes les formes : autant obligation qu’action, ou les deux. D’un point de vue schématique, nous pouvons dire que les produits dérivés se situent entre les obligations et les actions. Le schéma ci-dessous l’explique.</p><figure id="7dc0dbad-6949-4699-bb89-d9fc9010a945" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Titre_spec_schma_2.svg"><img style="width:768px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Titre_spec_schma_2.svg"/></a></figure></div></p><figure id="38143e76-1845-43f3-94e2-53a5125ec680" class="image"><a href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/obligation_2.svg"><img style="width:288px" src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/obligation_2.svg"/></a></figure><h3 id="75656544-f56b-40ef-8a07-2cfd9d8af749" class="">Qu’en est-il du Bitcoin ?</h3><p id="d6e4ecb4-8003-45fc-b732-a46be9966a28" class="">La spéculation peut donc s’effectuer sur ces trois types d’actifs. Mais qu’en est-il du <mark class="highlight-orange">Bitcoin </mark>? Dans quelle catégorie se trouve-t-il ?<div class="indented"><ul id="be902259-cfa9-405b-922c-5f9287e71a76" class="bulleted-list"><li style="list-style-type:disc">Le Bitcoin n’est pas une <mark class="highlight-orange">obligation</mark> dans le sens qu’il ne verse pas de l’argent à des périodes fixes.</li></ul><ul id="56db9832-5410-4d7f-aa57-93a482f2e1a9" class="bulleted-list"><li style="list-style-type:disc">Le Bitcoin n’est pas une ou plusieurs <mark class="highlight-orange">actions</mark> car il n’est pas une société commerciale.</li></ul><ul id="f4f7cba6-e907-48e2-a989-e7062c243caf" class="bulleted-list"><li style="list-style-type:disc">Le Bitcoin ne peut pas être un <mark class="highlight-orange">produit dérivé</mark> car il ne remplit pas les conditions nécessaires ne ressemblant aucunement à une obligation ou une action.</li></ul></div></p><p id="23ad0db5-1371-4bfb-bb56-d3655f62cc2e" class="">Le Bitcoin fait parti d’une autre catégorie comme son nom l’indique : <mark class="highlight-orange">les monnaies.</mark> Malgré tout, en classant le Bitcoin dans cette catégorie, un problème se pose. La <mark class="highlight-orange">définition économique</mark> d’une monnaie est la suivante : c’est un <mark class="highlight-orange">instrument</mark> qui sert à effectuer des échanges, et non un <mark class="highlight-orange">actif financier</mark>. Autrement dit, avec une monnaie, nous sommes sensés acheter des actifs financiers et non pour s’en servir pour <mark class="highlight-orange">générer un profit</mark>.
-Cet état de fait est renforcé par l’existence<mark class="highlight-orange"> des banques centrales</mark> dont le rôle est de limiter la <mark class="highlight-orange">fluctuation des monnaies</mark>, c’est à dire de les rendre <mark class="highlight-orange">stable</mark>.</p><p id="e7aa6afd-6c3f-4388-8d01-94b1e8fa4c4c" class="">Le Bitcoin ne suit donc pas cette définition car il est, à l’heure actuelle, en très grande majorité utilisé pour faire du profit et donc <mark class="highlight-orange">spéculer</mark>. Aujourd’hui détenir du Bitcoin en France est d’ailleurs juridiquement considérés comme détenir des actions et subis donc les mêmes taxes lors des retrais. Cela contribue à entretenir une très grande <mark class="highlight-orange">volatilité </mark>du Bitcoin,<mark class="highlight-orange"> </mark>empêchant ainsi de faire des transactions à but <mark class="highlight-orange">“non lucratif”</mark>. De plus, le Bitcoin n’est pas forcément voué à devenir stable, comme expliqué dans <mark class="highlight-pink">(mettre article sur la circulation du bitcoin en lien)</mark>. Le nombre de Bitcoin est limité à <mark class="highlight-orange">21 millions</mark>, le rendant d’autant plus volatile car cela augmente sa rareté. Le rapprochement entre <mark class="highlight-orange">l’or</mark> et le <mark class="highlight-orange">Bitcoin</mark> devient donc plutôt évident sachant que l’or est en quantité limité sur terre.<div class="indented"><p id="a8086fa5-19e9-4e8b-8744-76b4f82f75a7" class=""><em>“Le Bitcoin c’est l’or pour les nerds” </em>Stephen Colbert, comédien.</p></div></p><h3 id="8aecdd82-5f93-49ff-ba2e-31b1c9dcd5ba" class="">Quelle est l’avenir du Bitcoin parmi les titres spéculatifs ?</h3><p id="457f7537-c47f-40e8-a8b5-6710b541041e" class="">Le Bitcoin est tout de même en train d’acquérir une position non pas de stabilité, mais une <mark class="highlight-orange">réelle relation</mark> entre lui et les autres cryptomonnaies. En effet, aujourd’hui, le Bitcoin est comme un <mark class="highlight-orange">chef d’orchestre</mark> pour les autres cryptomonnaies. </p><p id="d08f39b2-2469-4fdd-8a68-5aff48702f2e" class="">Il donne donc une <mark class="highlight-orange">dynamique de marchés</mark> aux <mark class="highlight-orange">altcoins</mark> vont plus ou moins suivre cette même tendance. Par ailleurs, le Bitcoin évolue en <mark class="highlight-orange">corrélation</mark> avec le<mark class="highlight-orange"> Nasdaq</mark>, voire en total corrélation, pendant de <mark class="highlight-orange">courte </mark>ou <mark class="highlight-orange">moyenne</mark> période. D’après Nicolas Chéron stratégiste marchés, le Bitcoin est en en train de prendre une forme similaire à un indice tel que le Nasdaq.<div class="indented"><p id="a9173e2f-2051-40e8-b6eb-be21bfcc2410" class=""><em>“Le Bitcoin est aux altcoins ce qu’est les indices sont au actions”</em> Nicolas Chéron stratégiste marchés.</p></div></p><p id="45fae2b8-719a-44b7-9300-05fa6ee149cc" class="">D’après nous, le Bitcoin n’est donc pas voué à devenir une <mark class="highlight-orange">monnaie stable</mark> et ne servira sûrement jamais à faire des échanges de biens ou de services comme le permettent <mark class="highlight-orange">les devises étatiques</mark>. Néanmoins, certaines cryptomonnaies comme le <mark class="highlight-orange">Tether</mark> ou le <mark class="highlight-orange">DAI</mark>, plus couramment appelé <mark class="highlight-orange">stablecoins</mark>, sont prévues pour cela et utilisent des technologies liées à la blockchain pour garder un taux de fluctuation très bas.</p><p id="239f5e54-8fe9-4190-a018-a34ef170e3e8" class="">
-</p><h1 id="de96452a-e0b9-4f02-931d-a48181e47ca8" class="">Quelles sont les perspectives d’avenir du Bitcoin compte tenu des moyens de le contrôler ?</h1><p id="1967db4f-5b0a-492a-b45a-d090a8889024" class="">La régulation du Bitcoin est, et de toutes les cryptomonnaies autres que des <span style="border-bottom:0.05em solid">CBDC</span>, est un sujet très complexe, à tel point que les instances de régulation bancaire et financière ont encore des difficultés à trouver une méthode efficace. Deux instances principale de régulation veulent contrôlé les cryptomonnaies,</p><h3 id="bc317125-f96e-409d-8c16-9c9320148deb" class="">Les Banques Centrale</h3><p id="5d7b3d04-f232-4d54-9105-b28ace7955d6" class="">Pour comprendre pourquoi les banques centrales veulent contrôler et réguler les cryptomonnaies, il faut tout d’abord savoir quelle est l’utilité d’une banque centrale. Les banques centrales vont avoir trois rôles majeurs :</p><ul id="3b80f371-abc0-4785-8b10-e7c1c4e5a400" class="bulleted-list"><li style="list-style-type:disc"><strong>Garantir la stabilité des prix </strong>(en minimisant l’inflation et la déflation à environ 2%),</li></ul><ul id="686990c7-d4bb-4807-969d-9117903edd39" class="bulleted-list"><li style="list-style-type:disc"><strong>Émettre de la monnaie fiduciaire </strong>(c’est-à-dire mettre en circulation des pièces et billets), on parle aussi de battre la monnaie,</li></ul><ul id="cd319943-b3a0-476e-b531-54709d9fd2ee" class="bulleted-list"><li style="list-style-type:disc"><strong>Prêter de l’argent aux banques commerciales.</strong></li></ul><p id="d626a873-46ab-4274-a334-86692ab0f03c" class="">Réguler les cryptomonnaies est donc loin d’être aisée sachant qu&#x27;elles sont nativement décentralisées. Cette décentralisation empêche la garantie d’un cours stable comme l’effectue les banques centrales sur les devises qu’elle émette. Ne pouvant créer de la monnaies ou en brulé pour réguler le cours. </p><p id="619d5704-8d78-4070-9b96-ce39aeb8b5c6" class="">Pour régler ce problème certaines banques centrales ont créer des <mark class="highlight-orange"><strong>CBDC</strong></mark>, ”Central Bank Digital Currency” ou &quot;<mark class="highlight-orange">Monnaie Digitale de Banque Centrale</mark>&quot; (MDBC) en français. Une CBDC est une cryptomonnaies directement émise par une banque centrale, apportant tout les avantages d’une devise étatique.</p><h3 id="14fb60a4-e045-414b-b97b-fa3c936be891" class="">Les <strong>É</strong>tats </h3><p id="0d243f71-c084-4a74-a4e2-6be3b60f0cd2" class="">A l’heure d’aujourd’hui chaque transaction autre qu’en liquide, que vous effectués sont contrôlé par votre gouvernement, via vos banques. En effet pour éviter les transactions illégales le gouvernement demande aux banques de vérifier si vos transactions respectent bien la lois.</p><p id="47cf1989-7a92-443f-8e69-cd879f66dc50" class="">Cette régulation a pour principale objectif d’évité l’évasion fiscal et la ventes de produits illicites. Mais aussi de nous protéger nous consommateur face aux arnaques et de nous donner des droits face aux géants d’internet comme le droit de rétraction en cas d’achats malencontreux. </p><p id="7937236c-3484-420a-8e7e-d87fbb40001a" class="">Mais il serait impossible d’appliquer ces régulations sur des cryptomonnaies comme le Bitcoin à cause de leurs caractéristiques comme :<div class="indented"><p id="e515ec03-7652-4f61-9ee3-cc4edaaf9a29" class="">L’anonymat, étant totalement anonymes il est impossible pour un gouvernement de retrouvé les personnes derrière une transaction et donc de vérifier la légalité de cette même transaction.</p><p id="9efaff94-fd6a-4356-911a-5e8200247a2e" class="">Le Peer-to-Peer, empêchant donc de récupérais votre argent une fois la transaction effectuer, même si c’était une erreur.</p></div></p><p id="4357a295-7603-43a7-97eb-b93ae5325c58" class="">Encore aujourd’hui aucune méthode n’a ététrouvée pour régler ces deux problème sans empiété sur la liberté que veulent donner les cryptomonnaies.</p><h1 id="d6bc2c88-cb24-42e5-84ed-863b3b8f48bf" class="">Bibliographie </h1><ul id="96b79a61-3093-477b-9dd2-663be11498da" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.coinbase.com/fr/learn/crypto-basics">https://www.coinbase.com/fr/learn/crypto-basics</a><p id="1c185c29-7447-4aee-b956-3da8ea951bae" class=""><a href="https://www.coinbase.com/fr/learn/crypto-basics/what-is-a-protocol">https://www.coinbase.com/fr/learn/crypto-basics/what-is-a-protocol</a></p><p id="f5e387f0-c180-40cc-a8c7-a66a96c6143b" class=""><a href="https://www.coinbase.com/fr/learn/crypto-basics/what-is-bitcoin">https://www.coinbase.com/fr/learn/crypto-basics/what-is-bitcoin</a></p></li></ul><ul id="300f1964-7e3f-4f20-b8af-1236962a1e08" class="bulleted-list"><li style="list-style-type:disc"><a href="https://coinmarketcap.com/alexandria">https://coinmarketcap.com/alexandria</a></li></ul><ul id="b82c58c8-9f61-4fd0-a618-8162f14eb5aa" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.futura-sciences.com/tech/questions-reponses/cryptomonnaies-bitcoin-btc-il-toujours-si-populaire-16032/">https://www.futura-sciences.com/tech/questions-reponses/cryptomonnaies-bitcoin-btc-il-toujours-si-populaire-16032/</a></li></ul><ul id="775812e5-e281-4566-9f81-00ef41ef3e74" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=du34gPopY5Y&amp;list=LL&amp;index=6">https://www.youtube.com/watch?v=du34gPopY5Y</a></li></ul><ul id="8d2ddcec-3c24-42a6-834e-49a30d142471" class="bulleted-list"><li style="list-style-type:disc"><a href="https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin">https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin</a></li></ul><p id="3ce84978-c5cb-4d4c-abcb-f52a6df5ba8c" class="">
-</p><ul id="9c6b887b-5e58-44cf-9750-612b91d97603" class="bulleted-list"><li style="list-style-type:disc"><a href="https://n26.com/fr-fr/blog/banque-centrale">https://n26.com/fr-fr/blog/banque-centrale</a></li></ul><ul id="9e3cb22b-2787-4657-a7f8-cd1b186ec65e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/">https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/</a></li></ul><p id="33b31ed9-fc7d-4f32-941b-d534b5f1aa76" class="">
-</p><figure id="f41ba889-43c0-4495-b6a0-a5b5065c66ad" class="link-to-page"><a href="https://www.notion.so/html-css-f41ba88943c04495b6a0a5b5065c66ad">html/css</a></figure><p id="87fb55d8-b473-4ef6-9397-cf389f750087" class="">
-</p></div></article></body></html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>SAE Bitcoin</title>
+	<style>
+		/* cspell:disable-file */
+		/* webkit printing magic: print all background colors */
+		html {
+			-webkit-print-color-adjust: exact;
+		}
+
+		* {
+			box-sizing: border-box;
+			-webkit-print-color-adjust: exact;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@media only screen {
+			body {
+				margin: 2em auto;
+				max-width: 900px;
+				color: rgb(55, 53, 47);
+			}
+		}
+
+		body {
+			line-height: 1.5;
+			white-space: pre-wrap;
+		}
+
+		a,
+		a.visited {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		.pdf-relative-link-path {
+			font-size: 80%;
+			color: #444;
+		}
+
+		h1,
+		h2,
+		h3 {
+			letter-spacing: -0.01em;
+			line-height: 1.2;
+			font-weight: 600;
+			margin-bottom: 0;
+		}
+
+		.page-title {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-top: 0;
+			margin-bottom: 0.75em;
+		}
+
+		h1 {
+			font-size: 1.875rem;
+			margin-top: 1.875rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 1.5rem;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			margin-top: 1.25rem;
+		}
+
+		.source {
+			border: 1px solid #ddd;
+			border-radius: 3px;
+			padding: 1.5em;
+			word-break: break-all;
+		}
+
+		.callout {
+			border-radius: 3px;
+			padding: 1rem;
+		}
+
+		figure {
+			margin: 1.25em 0;
+			page-break-inside: avoid;
+		}
+
+		figcaption {
+			opacity: 0.5;
+			font-size: 85%;
+			margin-top: 0.5em;
+		}
+
+		mark {
+			background-color: transparent;
+		}
+
+		.alinea {
+			padding-left: 1.5em;
+		}
+
+		hr {
+			background: transparent;
+			display: block;
+			width: 100%;
+			height: 1px;
+			visibility: visible;
+			border: none;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		@media only print {
+			img {
+				max-height: 100vh;
+				object-fit: contain;
+			}
+		}
+
+		@page {
+			margin: 1in;
+		}
+
+		.collection-content {
+			font-size: 0.875rem;
+		}
+
+		.column-list {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.column {
+			padding: 0 1em;
+		}
+
+		.column:first-child {
+			padding-left: 0;
+		}
+
+		.column:last-child {
+			padding-right: 0;
+		}
+
+		.table_of_contents-item {
+			display: block;
+			font-size: 0.875rem;
+			line-height: 1.3;
+			padding: 0.125rem;
+		}
+
+		.table_of_contents-indent-1 {
+			margin-left: 1.5rem;
+		}
+
+		.table_of_contents-indent-2 {
+			margin-left: 3rem;
+		}
+
+		.table_of_contents-indent-3 {
+			margin-left: 4.5rem;
+		}
+
+		.table_of_contents-link {
+			text-decoration: none;
+			opacity: 0.7;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid rgba(55, 53, 47, 0.09);
+			border-collapse: collapse;
+		}
+
+		table {
+			border-left: none;
+			border-right: none;
+		}
+
+		th,
+		td {
+			font-weight: normal;
+			padding: 0.25em 0.5em;
+			line-height: 1.5;
+			min-height: 1.5em;
+			text-align: left;
+		}
+
+		th {
+			color: rgba(55, 53, 47, 0.6);
+		}
+
+		ol,
+		ul {
+			margin: 0;
+			margin-block-start: 0.6em;
+			margin-block-end: 0.6em;
+		}
+
+		li>ol:first-child,
+		li>ul:first-child {
+			margin-block-start: 0.6em;
+		}
+
+		ul>li {
+			list-style: disc;
+		}
+
+		ul.to-do-list {
+			text-indent: -1.7em;
+		}
+
+		ul.to-do-list>li {
+			list-style: none;
+		}
+
+		.to-do-children-checked {
+			text-decoration: line-through;
+			opacity: 0.375;
+		}
+
+		ul.toggle>li {
+			list-style: none;
+		}
+
+		ul {
+			padding-inline-start: 1.7em;
+		}
+
+		ul>li {
+			padding-left: 0.1em;
+		}
+
+		ol {
+			padding-inline-start: 1.6em;
+		}
+
+		ol>li {
+			padding-left: 0.2em;
+		}
+
+		.mono ol {
+			padding-inline-start: 2em;
+		}
+
+		.mono ol>li {
+			text-indent: -0.4em;
+		}
+
+		.toggle {
+			padding-inline-start: 0em;
+			list-style-type: none;
+		}
+
+		/* Indent toggle children */
+		.toggle>li>details {
+			padding-left: 1.7em;
+		}
+
+		.toggle>li>details>summary {
+			margin-left: -1.1em;
+		}
+
+		.selected-value {
+			display: inline-block;
+			padding: 0 0.5em;
+			background: rgba(206, 205, 202, 0.5);
+			border-radius: 3px;
+			margin-right: 0.5em;
+			margin-top: 0.3em;
+			margin-bottom: 0.3em;
+			white-space: nowrap;
+		}
+
+		.collection-title {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
+		.simple-table {
+			margin-top: 1em;
+			font-size: 0.875rem;
+		}
+
+		.simple-table-header {
+			background: rgb(247, 246, 243);
+			color: black;
+			font-weight: 500;
+		}
+
+		time {
+			opacity: 0.5;
+		}
+
+		.icon {
+			display: inline-block;
+			max-width: 1.2em;
+			max-height: 1.2em;
+			text-decoration: none;
+			vertical-align: text-bottom;
+			margin-right: 0.5em;
+		}
+
+		img.icon {
+			border-radius: 3px;
+		}
+
+		.user-icon {
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 100%;
+			margin-right: 0.5rem;
+		}
+
+		.user-icon-inner {
+			font-size: 0.8em;
+		}
+
+		.text-icon {
+			border: 1px solid #000;
+			text-align: center;
+		}
+
+		.page-cover-image {
+			display: block;
+			object-fit: cover;
+			width: 100%;
+			max-height: 30vh;
+		}
+
+		.page-header-icon {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.page-header-icon-with-cover {
+			margin-top: -0.72em;
+			margin-left: 0.07em;
+		}
+
+		.page-header-icon img {
+			border-radius: 3px;
+		}
+
+		.link-to-page {
+			margin: 1em 0;
+			padding: 0;
+			border: none;
+			font-weight: 500;
+		}
+
+		p>.user {
+			opacity: 0.5;
+		}
+
+		td>.user,
+		td>time {
+			white-space: nowrap;
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+			margin-right: 0.6em;
+			vertical-align: middle;
+		}
+
+		p {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+		}
+
+		.image {
+			border: none;
+			margin: 1.5em 0;
+			padding: 0;
+			border-radius: 0;
+			text-align: center;
+		}
+
+		.code,
+		code {
+			background: rgba(135, 131, 120, 0.15);
+			border-radius: 3px;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 85%;
+			tab-size: 2;
+		}
+
+		code {
+			color: #eb5757;
+		}
+
+		.code {
+			padding: 1.5em 1em;
+		}
+
+		.code-wrap {
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.code>code {
+			background: none;
+			padding: 0;
+			font-size: 100%;
+			color: inherit;
+		}
+
+		blockquote {
+			font-size: 1.25em;
+			margin: 1em 0;
+			padding-left: 1em;
+			border-left: 3px solid rgb(55, 53, 47);
+		}
+
+		.bookmark {
+			text-decoration: none;
+			max-height: 8em;
+			padding: 0;
+			display: flex;
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.bookmark-title {
+			font-size: 0.85em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 1.75em;
+			white-space: nowrap;
+		}
+
+		.bookmark-text {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.bookmark-info {
+			flex: 4 1 180px;
+			padding: 12px 14px 14px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.bookmark-image {
+			width: 33%;
+			flex: 1 1 180px;
+			display: block;
+			position: relative;
+			object-fit: cover;
+			border-radius: 1px;
+		}
+
+		.bookmark-description {
+			color: rgba(55, 53, 47, 0.6);
+			font-size: 0.75em;
+			overflow: hidden;
+			max-height: 4.5em;
+			word-break: break-word;
+		}
+
+		.bookmark-href {
+			font-size: 0.75em;
+			margin-top: 0.25em;
+		}
+
+		.sans {
+			font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		.code {
+			font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+		}
+
+		.serif {
+			font-family: Lyon-Text, Georgia, ui-serif, serif;
+		}
+
+		.mono {
+			font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+		}
+
+		.pdf .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+		}
+
+		.pdf .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.pdf .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+		}
+
+		.pdf .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.highlight-default {
+			color: rgba(55, 53, 47, 1);
+		}
+
+		.highlight-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.highlight-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.highlight-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.highlight-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.highlight-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.highlight-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.highlight-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.highlight-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.highlight-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.highlight-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.highlight-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.highlight-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.highlight-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.highlight-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.highlight-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.highlight-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.highlight-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.highlight-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.block-color-default {
+			color: inherit;
+			fill: inherit;
+		}
+
+		.block-color-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.block-color-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.block-color-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.block-color-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.block-color-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.block-color-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.block-color-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.block-color-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.block-color-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.block-color-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.block-color-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.block-color-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.block-color-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.block-color-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.block-color-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.block-color-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.block-color-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.block-color-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.select-value-color-pink {
+			background-color: rgba(245, 224, 233, 1);
+		}
+
+		.select-value-color-purple {
+			background-color: rgba(232, 222, 238, 1);
+		}
+
+		.select-value-color-green {
+			background-color: rgba(219, 237, 219, 1);
+		}
+
+		.select-value-color-gray {
+			background-color: rgba(227, 226, 224, 1);
+		}
+
+		.select-value-color-opaquegray {
+			background-color: rgba(255, 255, 255, 0.0375);
+		}
+
+		.select-value-color-orange {
+			background-color: rgba(250, 222, 201, 1);
+		}
+
+		.select-value-color-brown {
+			background-color: rgba(238, 224, 218, 1);
+		}
+
+		.select-value-color-red {
+			background-color: rgba(255, 226, 221, 1);
+		}
+
+		.select-value-color-yellow {
+			background-color: rgba(253, 236, 200, 1);
+		}
+
+		.select-value-color-blue {
+			background-color: rgba(211, 229, 239, 1);
+		}
+
+		.checkbox {
+			display: inline-flex;
+			vertical-align: text-bottom;
+			width: 16;
+			height: 16;
+			background-size: 16px;
+			margin-left: 2px;
+			margin-right: 5px;
+		}
+
+		.checkbox-on {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+
+		.checkbox-off {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+	</style>
+</head>
+
+<body>
+	<article class="page sans">
+		<header><img class="page-cover-image"
+				src="https://images.unsplash.com/photo-1543699539-33a389c5dcfe?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb"
+				style="object-position:center 50%" />
+			<div class="page-header-icon page-header-icon-with-cover"><span class="icon">🪙</span></div>
+			<h1 class="page-title">SAE Bitcoin</h1>
+		</header>
+		<div class="page-body">
+			<p>
+			</p>
+			<p>Le Bitcoin est une monnaie virtuelle créée en 2009 qui
+				révolutionne ce siècle. Les articles de ce site web tenteront de vous en apprendre un peu plus par la
+				comparaison avec les monnaies étatiques, son mode de création et de circulation, ses conséquences
+				écologiques, les raisons de son succès, sa place parmi les titres spéculatifs et ses perspectives
+				d’avenir.</p>
+			<h1>Quelles sont les fonctions réelles du Bitcoin
+				comparativement aux devises ?</h1>
+			<p><strong>Aujourd’hui, 90% des échanges monétaire sont
+					électroniques, le reste représente l’argent circulant en liquide.</strong></p>
+			<p>Toute cette monnaie n&#x27;existe que dans les livres
+				de comptes des banques, évidemment aujourd&#x27;hui, ce n&#x27;est pas un vrai livre, c&#x27;est une
+				base de données récapitulant toutes les transactions effectuée. Le problème est que si cette base de
+				donnée disparait pour une quelconque raison (piratage, incidents…), l’argent s’envolera. Bien sur, pour
+				éviter ce genre de problème, les banques sont sécurisé et ont des copies de ces bases de données.</p>
+			<p>Le Bitcoin est une monnaie <mark
+					class="highlight-orange">cryptographique </mark>(cryptomonnaies) et <mark
+					class="highlight-orange">virtuelle</mark>, avec pour intérêt d’être totalement <mark
+					class="highlight-orange">Peer-to-Peer* </mark>et <mark
+					class="highlight-orange">décentralisé**</mark>. Le Bitcoin possède lui aussi une base de donnée
+				contenant toutes les transactions effectuées du nom de <mark class="highlight-orange"><span
+						style="border-bottom:0.05em solid">blockchain</span></mark>. Mais en opposition avec les banques
+				habituelle le Bitcoin est:
+			<div class="alinea">
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc"><strong><mark class="highlight-orange">Anonyme</mark></strong><mark
+							class="highlight-orange"> </mark>car il répertorie ses transactions anonymement, seul des
+						montants et des identifiants apparaissent mais pas les noms,</li>
+				</ul>
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc"><mark class="highlight-orange"><strong>Opensource</strong></mark>,
+						tout le monde peut avoir accès aux fonctionnement de l’algorithme ainsi que les transactions
+						effectuées,</li>
+				</ul>
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc"><mark
+							class="highlight-orange"><strong>Décentralisé</strong></mark>, sa base de données n’est pas
+						sauvegardé qu’a un seul endroit (comme les banques) mais par tous les acteurs connectés au
+						réseau Bitcoin,</li>
+				</ul>
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc"><mark class="highlight-orange"><strong>Inviolable</strong></mark>,
+						il est impossible de corrompre les livres de comptes grâce a la technologie <mark
+							class="highlight-orange"><span style="border-bottom:0.05em solid">blockchain</span></mark>.
+					</li>
+				</ul>
+			</div>
+			</p>
+			<p>*Le <mark class="highlight-orange">Peer-to-Peer</mark>
+				ou paire à paire en français a pour principe de ne pas passer par un intermédiaire lors d’une
+				transaction. Aujourd’hui tout transaction autre qu’en liquide, vont passée par une ou plusieurs banques.
+			</p>
+			<p>**La <mark class="highlight-orange">décentralisation
+				</mark>du Bitcoin signifie qu’il n’y a pas d’entité comme une banque central qui va contrôler le cours
+				de celle ci. Cette décentralisation permet donc au Bitcoin d’être définit comme totalement <mark
+					class="highlight-orange">Peer-to-Peer</mark> (P2P).</p>
+			<p>
+			</p>
+			<figure class="image"><a
+					href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/scma_transaction.svg"><img
+						style="width:672px"
+						src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/scma_transaction.svg" /></a></figure>
+			<p>Pour le Bitcoin le fonctionnement est totalement <mark
+					class="highlight-orange">différent</mark>, chaque transaction passe par le réseau Bitcoin. Ce réseau
+				sert à valider la transaction afin d’éviter toute fraude. Bien que nous pouvons penser que le ce réseau
+				est centralisé sa composition nous démontre l’inverse comme expliqué dans <mark
+					class="highlight-pink">ARTICLE 2</mark>.</p>
+			<p>Pour comparer plus simplement le Bitcoin avec des
+				devises <mark class="highlight-orange">étatiques</mark>, quelques questions essentiels se posent.</p>
+			<table class="simple-table">
+				<tbody>
+					<tr>
+						<td id="KpRQ">Devises étatiques </td>
+						<td id="P_MR">Bitcoin</td>
+					</tr>
+					<tr>
+						<td id="KpRQ">Qui les gèrent ?</td>
+						<td id="P_MR"></td>
+					</tr>
+					<tr>
+						<tdmettent.</td>
+						<tduto-gèrent grâce à un protocole open-source.</td>
+					</tr>
+					<tr>
+						<tdurs ?</td>
+						<td id="P_MR"></td>
+					</tr>
+					<tr>
+						<tdnfiance dans le pays régisseur.</td>
+						<tde.</td>
+					</tr>
+					<tr>
+						<tdd>
+						<td id="P_MR"></td>
+					</tr>
+					<tr>
+						<td par le gouvernement. </td>
+						<tdryptographie.</td>
+					</tr>
+					<tr>
+						<td/td>
+						<td id="P_MR"></td>
+					</tr>
+					<tr>
+						<td id="KpRQ">Oui</td>
+						<td id="P_MR">Non</td>
+					</tr>
+					<tr>
+						<td avec ?</td>
+						<td id="P_MR"></td>
+					</tr>
+					<tr>
+						<tdys d’où est issue la devise</td>
+						<tdant l’accepte.</td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+			</p>
+			<p><a
+					href="https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/">https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/</a>
+			</p>
+			<h1>Quel est le mode de création et de circulation du
+				Bitcoin ?</h1>
+			<h3><strong>Pour aborder la circulation du bitcoin ainsi
+					que son mode de création, il est indispensable d’expliquer les technologies derrière cette
+					monnaie.</strong></h3>
+			<p>La base de données de toutes les transactions
+				n&#x27;est pas gérée par une instance centrale
+				comme une banque traditionnelle, mais partagée dans un immense réseau <mark
+					class="highlight-orange">Peer-to-Peer</mark>, tout ce qui est connecté au réseau Bitcoin peut
+				héberger une copie de la base de données qui contient toutes les transactions.</p>
+			<p>Cependant la banque sert à deux chose aujourd’hui : à
+				identifier les <mark class="highlight-orange">auteurs </mark>des transactions ainsi que de <mark
+					class="highlight-orange">vérifier les soldes</mark>, et accessoirement, d’empêcher tout <mark
+					class="highlight-orange">modification illégale</mark>.</p>
+			<p><strong>Pour résoudre ces problèmes, le Bitcoin se
+					base sur deux technologies: </strong><mark class="highlight-orange"><strong>la signature
+						électronique</strong></mark><strong> et la </strong><mark
+					class="highlight-orange"><strong>blockchain</strong></mark><strong>.</strong></p>
+			<h3>Mécanisme et sécurisation du Bitcoin.</h3>
+			<p><strong>Pour être certains des auteurs des
+					transactions, le principe de </strong><mark class="highlight-orange"><strong>cryptographie
+						asymétrique</strong></mark><strong> est utilisé.</strong></p>
+			<p>En cryptographie généralement<mark
+					class="highlight-orange"> </mark>on utilise une clé qui permet de chiffrer et déchiffrer des
+				messages. Dans les techniques de chiffrage des plus simples, on ne peut déchiffrer un message que si on
+				possède la clé qui a servi à le chiffrer.</p>
+			<div class="column-list">
+				<div style="width:50%" class="column">
+					<p>Mais il existe des systèmes de chiffrage plus
+						sophistiqués comme ce qu&#x27;on appelle l&#x27;<mark class="highlight-orange">algorithme
+							RSA</mark> qui sont <mark class="highlight-orange">asymétriques</mark>, c&#x27;est-à-dire la
+						clé qui sert à chiffrer le message n&#x27;est pas la même que celle qui sert à déchiffrer.</p>
+					<p>Cet algorithme est lourd et compliqué
+						mathématiquement, il transforme le message dans son ensemble. Il est <strong>impossible de
+							procéder dans l&#x27;autre</strong> sens si on n&#x27;a pas la clé de déchiffrage.
+					<div class="alinea">
+						<p><em>Par exemple, si on ne possède que la
+								clé de chiffrement, on peut chiffrer des messages mais pas les déchiffrer, il faut une
+								autre clé pour ça.</em></p>
+					</div>
+					</p>
+				</div>
+				<div style="width:50%" class="column">
+					<figure class="image"><a
+							href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Explication_crypte.svg"><img
+								style="width:900px"
+								src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Explication_crypte.svg" /></a>
+					</figure>
+				</div>
+			</div>
+			<p><strong>Dans le cas d’une transaction de monnaie
+					cryptographique :</strong></p>
+			<p>Chaque utilisateur a une clé de chiffrement unique
+				privée et une clé de déchiffrement qui est publique, lorsque l’utilisateur affecte le réseau de part une
+				transaction avec quelqu’un d’autre, la transaction est chiffrée par sa clé, mais elle peut être
+				déchiffrée que par la clé de déchiffrement publique.</p>
+			<p>On est certain que c’est l’utilisateur qui a inscrit
+				cette transaction <strong>puisque personne d’autre n’est capable de chiffrer de cette manière</strong>
+				et donc c&#x27;est ça qui fournit l&#x27;authentification.</p>
+			<p>Les transactions sont donc impossibles à falsifier
+				sans posséder la clé privée mais elle sont aussi impossibles à répudier; une fois avoir payé, impossible
+				de nier l&#x27;avoir fait.
+			<div class="alinea">
+				<p><em>Donc en pratique pour échanger des Bitcoin, il
+						faut créer un compte et vous recevez un identifiant, une clé privée que vous gardez pour vous,
+						et une clé publique qui sera connue de tous les nœuds du réseau, La clé privée vous permet
+						d&#x27;authentifier vos transactions.</em></p>
+			</div>
+			</p>
+			<p><strong>Malheureusement, un problème subsiste, il y a
+					plein de copies de la base de données.</strong></p>
+			<h3>Synchronisation et partage d’informations</h3>
+			<p><strong>Comment fait ce réseau pour communiquer et se
+					synchroniser?</strong>
+			<div class="alinea">
+				<p>Il peut y avoir des conflits (deux transaction en
+					même temps créant un duplicata…)</p>
+			</div>
+			</p>
+			<p>Chaque <mark class="highlight-orange">nœud </mark>du
+				réseau enregistre les nouvelles transactions dont il a connaissance, puis il la partage avec les autres,
+				tous les nœud possèdent une liste de transactions en attentes qui peuvent être légèrement différentes
+				les unes des autres.</p>
+			<p>Puis périodiquement, environ toutes les <mark
+					class="highlight-orange">10 minutes</mark>, il y a un des nœuds du réseau dont les transactions en
+				attente sont déclarés &quot;<mark class="highlight-orange">validées</mark>&quot; et tout les autres
+				nœuds se <mark class="highlight-orange">synchronisent dessus</mark>. Ce groupe de transactions est
+				appelé &quot;<mark class="highlight-orange">un bloc</mark>&quot;.</p>
+			<p>La liste des transactions validées se présente sous la
+				forme d&#x27;une suite de blocs rafraichit toutes les 10 minutes, c’est la chaîne de blocs ou “<mark
+					class="highlight-orange">blockchain</mark>”.</p>
+			<figure class="image"><a
+					href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled.png"><img style="width:624px"
+						src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled.png" /></a></figure>
+			<p>Pour trouver quel sera le prochain nœud sur lequel
+				tout les autres se synchroniseront, un <mark class="highlight-orange">identifiant </mark>lui est
+				attribué.</p>
+			<p>Cette identifiant résulte d’un procédé complexe
+				résultant de conditions imposés et qui demande de nombreux efforts de calculs informatiques…</p>
+			<p>
+			</p>
+			<h3>Trouver un identifiant au bloc pour agrandir la chaine.</h3>
+			<div class="column-list">
+				<div style="width:56.25%" class="column">
+					<p>Pour trouver un identifiant à chaque nouveau
+						bloc de la blockchain, le principe du <mark class="highlight-orange">hachage </mark>va être
+						utilisé.
+					<div class="alinea">
+						<p><strong>Tout d’abord il faut connaitre ce
+								qu’est la fonction de hachage</strong></p>
+						<p>La fonction de hachage transforme une
+							chaine de caractère de n’importe quel longueur en une autre de longueur fixe. Le moindre
+							changement de la chaine d’entrée provoque un grand changement dans le résultat de la
+							fonction, ainsi, il suffit qu’un seul caractère, provenant d’un long texte, change pour que
+							le résultat soit complètement diffèrent.</p>
+					</div>
+					</p>
+				</div>
+				<div style="width:43.75%" class="column">
+					<figure class="image"><a
+							href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%201.png"><img
+								style="width:336px"
+								src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%201.png" /></a></figure>
+				</div>
+			</div>
+			<p>Un fichier contenant toutes les transactions qui vont
+				être validées ainsi que l&#x27;identifiant du bloc précédent et le tout sera ensuite “<mark
+					class="highlight-orange">haché</mark>”.
+				Est alors obtenu une suite de caractères qui va être utilisée comme identifiant.
+				<strong>Une chaine est définie comme telle lorsque l&#x27;identifiant d&#x27;un bloc sert à calculer
+					l&#x27;identifiant du suivant</strong>
+			</p>
+			<p><strong>L&#x27;intérêt de ce système, c&#x27;est de
+					protéger la base de données contre la moindre modification.</strong></p>
+			<h3>Pourquoi la monnaie est-elle sécurisé</h3>
+			<p>Si quelqu’un veut changer une transaction, cela va
+				complètement changer le hachage et donc changer l&#x27;identifiant du bloc, mais comme
+				l&#x27;identifiant du bloc est utilisé dans le hachage du bloc suivant, il faut aussi changer
+				l&#x27;identifiant du bloc suivant et ainsi de suite dans toute la chaîne.
+			<div class="alinea">
+				<figure class="image"><a
+						href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%202.png"><img
+							style="width:480px"
+							src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%202.png" /></a></figure>
+				<p>Donc impossible d&#x27;aller changer une
+					transaction dans le passé sans avoir à recalculer tous les identifiants de tous les blocs qui sont
+					arrivés depuis (sachant qu’il y en a un toute les 10 minutes).</p>
+			</div>
+			</p>
+			<p>En plus de tout cela, d’autre conditions vont être
+				ajoutés à l’équation pour savoir qui va être le prochain nœud, le tout étant pensé pour que l’ensemble
+				du réseau de nœud et de leur puissance de calcul puisse trouver un résultat a cette équation en moyenne
+				toute les 10 minutes.</p>
+			<div class="column-list">
+				<div style="width:50%" class="column">
+					<p>Cela résout en grande parti les tentatives de
+						fraudes,<strong> car la capacité a frauder devient liée a la puissance de calcul dont on dispose
+						</strong>(méthode de vérification appelée “<mark class="highlight-orange">proof of
+							work</mark>”), or, trouver de la ressource de calcul (des processeurs puissants, des
+						infrastructures…) est très vite couteux, voir impossible car il faudrait disposer d’un peu plus
+						de 50% de la puissance global de calcul des nœuds du réseau (provenant du monde entier) pour
+						réussir à tromper l’algorithme.</p>
+				</div>
+				<div style="width:50%" class="column">
+					<figure class="image"><a
+							href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%203.png"><img
+								style="width:336px"
+								src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Untitled%203.png" /></a></figure>
+				</div>
+			</div>
+			<h3>Mode de création du Bitcoin</h3>
+			<p>Il faut savoir que lorsqu’un bloc est <mark
+					class="highlight-orange">validé</mark>, donc que la machine arrive à résoudre le problème
+				mathématique complexe, il est <mark class="highlight-orange">rémunéré</mark>, c’est d’ailleurs
+				<strong>l’unique mécanisme de création de nouveaux Bitcoin</strong>, c’est pour cette rémunération que
+				ceux qui le veulent participent à la sécurisation du réseau, <strong>on les appelle les “</strong><mark
+					class="highlight-orange"><strong>mineurs</strong></mark><strong>”</strong> (référence aux mineurs
+				qui cherchaient l’or et ainsi contribuer a augmenter leur masse monétaire).</p>
+			<p>Contrairement à la monnaie classique, le bitcoin a un
+				nombre fixe d’unités : il a été décidé qu’il n’y aurait que <mark class="highlight-orange">21 millions
+					de bitcoins</mark> produits. C’est cette particularité qui en fait une denrée rare, comme l’or : il
+				y a une limite. Et une fois qu’elle sera atteinte, il n’y aura plus jamais de nouveau bitcoin miné.
+				C’est cette notion de rareté qui confère à un produit ou à un métal sa valeur. C’est pour réussir à
+				conférer cet aspect au bitcoin que <mark class="highlight-orange">Satoshi Nakamoto</mark> a décidé
+				d’instaurer une limite au bitcoin, pour créer de la valeur. Cette limite de bitcoin a été insérée dans
+				le code de la blockchain, et ne pourra<mark class="highlight-orange"> jamais être transgressée</mark>.
+			</p>
+			<p>Tous les quatre ans a lieu un événement que les
+				mineurs de bitcoin attendent : le <mark class="highlight-orange">Halving</mark>. Protocole inscrit dans
+				le code du bitcoin, il <mark class="highlight-orange">divise </mark>tous les quatre ans la somme de la
+				<mark class="highlight-orange">récompense </mark>des mineurs par <mark
+					class="highlight-orange">2</mark>. Le dernier Halving datant du 11 mai 2020, a fait passer cette
+				récompense de 12,5 à 6,25 Bitcoin. Il s’agit du <mark class="highlight-orange">3ème</mark> Halving
+				depuis la création. Il permet de réguler dans le <mark class="highlight-orange">temps </mark>la valeur
+				maximale ainsi que la quantité de rémunération totale, fixé à environ <mark class="highlight-orange">21
+					000 000 de Bitcoin</mark> atteint en 2140.</p>
+			<p>
+			</p>
+			<h1>Quelle sont ses conséquences écologiques ?</h1>
+			<p><a
+					href="https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin">https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin</a>
+			</p>
+			<p><a
+					href="https://digiconomist.net/">https://digiconomist.net/</a></p>
+			<p><a
+					href="https://usa.visa.com/dam/VCOM/download/corporate-responsibility/visa-2016-corporate-responsibility-report.pdf">https://usa.visa.com/dam/VCOM/download/corporate-responsibility/visa-2016-corporate-responsibility-report.pdf</a>
+			</p>
+			<p>
+			</p>
+			<p>Pour comprendre les conséquences du Bitcoin sur
+				l’écologie, nous allons donc voir quel est son <mark class="highlight-orange">l’impact</mark> sur la
+				consommation énergétique de la part des machines connectées au réseau, ainsi que sur la génération de
+				<mark class="highlight-orange">déchets électroniques</mark>.</p>
+			<p><strong>L’activité Bitcoin consomme principalement de
+					l’électricité dû aux nombreux calculs exécutés sur les machines pour valider les
+					transactions.</strong></p>
+			<p>Calculer la consommation énergétique engendrée par le
+				Bitcoin est loin d’être aisée. En effet, le Bitcoin étant totalement <mark
+					class="highlight-orange">décentralisé</mark>, tout le monde peut participer au réseau et donc ne pas
+				être <mark class="highlight-orange">recensé </mark>comme une entreprise possédant ses propres machines.
+			</p>
+			<p>Plusieurs études ont pourtant été menées, certaines
+				publiées sur le site <a href="http://digiconomics.net/">Digiconomics.net</a> montrent une consommation
+				énergétique extrêmement élevée, mais d’autres études, comme celle de Marc Bevant ou de l’Université
+				Technique de Munich, montrent des résultats assez différents.
+			<div class="alinea">
+				<p>En janvier 2018, les calculs de Marc Bevand,
+					fondés sur la consommation des ordinateurs de minage, mènent à une fourchette entre <mark
+						class="highlight-orange">14 et 27 TWh/an</mark>, avec une estimation moyenne à <mark
+						class="highlight-orange">18 TWh/an</mark> pour la consommation <mark
+						class="highlight-orange">globale</mark> du réseau Bitcoin. Ce qui, en comparaison, représente
+					autant que la consommation de <mark class="highlight-orange">l’Angola</mark>.</p>
+				<p>En juin 2019, l’université technique de <mark
+						class="highlight-orange">Munich </mark>établit que la consommation électrique annuelle de
+					Bitcoin s’élève à <mark class="highlight-orange">45,8 TWh</mark>. Le Bitcoin a généré de <mark
+						class="highlight-orange">2016 à 2018</mark> entre <mark class="highlight-orange">3 et 15
+						millions de tonnes de CO2</mark>, à comparer aux émissions mondiales de CO2, qui s’élèvent à
+					<mark class="highlight-orange">37 000 millions</mark> de tonnes.</p>
+				<p><em>« La production d’électricité peut augmenter
+						tout en maintenant un impact minimal sur l’environnement »</em> Katrina Kelly-Pitou, spécialiste
+					des grands systèmes électriques</p>
+			</div>
+			</p>
+			<p>Nous pouvons donc observer que le Bitcoin consomme
+				énormément d’électricité, mais, comparativement à des géants mondiaux du secteur du paiement et des
+				transactions comme <mark class="highlight-orange">VISA ou Mastercard</mark>, la consommation du bitcoin
+				serait négligeable : en 2016, Visa a consommé <mark class="highlight-orange">0,188 TWh</mark>, si
+				l&#x27;on estime à 100 milliards le nombre de transactions traitées, cela veut dire qu&#x27;une
+				transaction Visa consomme environ <mark class="highlight-orange">100 000 fois moins</mark> qu&#x27;une
+				transaction Bitcoin.</p>
+			<p>Le Bitcoin représenterait entre <mark
+					class="highlight-orange">0.15 % et 0.35 %</mark> de la consommation mondiale. De même sa pollution
+				est plutôt négligeable face au nombre de distributeurs automatiques de billets (ATM) et de camions
+				blindés nécessaires à les alimenter.</p>
+			<p><strong>Le Bitcoin représente aussi une génération de
+					déchets électroniques.</strong> En effet, les composants informatiques utilisés pour le calculs sont
+				exploités au maximum de leur efficacité 24h/24, ce qui réduit leurs <mark
+					class="highlight-orange">durées de vies</mark>. Les cartes graphiques et autres composants de
+				calculs utilisés pour la validation des blocs sont non seulement extrêmement <mark
+					class="highlight-orange">coûteux à fabriquer</mark>, mais génèrent aussi des<mark
+					class="highlight-orange"> déchets électroniques</mark> à leurs fins de vie alors que leurs
+				recyclages sont loin d’être total.</p>
+
+			<h1>Quelles sont les raisons du succès du Bitcoin ?</h1>
+			<h3>D’où viens le Bitcoin ?</h3>
+			<p><strong>Pour comprendre la raison du succès du
+					bitcoin, il faut tout d’abord comprendre le mouvement qui a inspiré sa création. </strong></p>
+			<div class="column-list">
+				<div style="width:68.75%" class="column">
+					<p>Tout d’abord, le bitcoin le bitcoin viens d’un
+						mouvement datant des <mark class="highlight-orange">années 80/90</mark> qui existe toujours du
+						nom de<mark class="highlight-orange"> CypherPunk</mark>. Le mouvement CypherPunk a pour idée
+						principale de protéger <mark class="highlight-orange">la vie privée</mark> de chacun sur le «
+						<mark class="highlight-orange">réseau</mark> » se qui signifie protéger nos informations
+						personnelles sur internet. Le fait que les monnaies étatiques sont émises par les banques
+						central/états (union) toutes transactions sur internet ou via une carte de crédit est vue par le
+						gouvernement, pour les <mark class="highlight-orange">Cyphers</mark> c’est une violation de la
+						vie privée d’où l’idée de la blockchain ou toute personne moral ou physique <mark
+							class="highlight-orange">est anonymes</mark>. </p>
+				</div>
+				<div style="width:31.249999999999993%" class="column">
+					<figure class="image"><a
+							href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Que-son-los-Cypherpunk_(2).jpg"><img
+								style="width:422px"
+								src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Que-son-los-Cypherpunk_(2).jpg" /></a>
+					</figure>
+				</div>
+			</div>
+			<p>Le bitcoin est donc par ailleurs totalement détaché de
+				tout états ou institution. La seule personnes ou groupe de personne pouvant avoir de l’influence serais
+				<mark class="highlight-orange">Satoshi Nakamoto</mark> mais à l’heure d’aujourd’hui personne ne sait qui
+				cela peut être, cela donne une véritable force au bitcoin car personne n’a de moyen de pression direct
+				sur cette monnaie. </p>
+			<p>Il est tout de même évident qu’un état puisse
+				interdire cette monnaie mais elle est impossible à « arrêté » tant quelle sera utilisée et soutenue par
+				<mark class="highlight-orange">des mineurs</mark> pour valider les transactions. Mais des moyens de
+				régulation commence à être mise en place par les gouvernements comme expliqué <mark
+					class="highlight-pink">(ARTICLE 6).</mark> Ces régulation vont d’autant plus donné de la <mark
+					class="highlight-orange">confiance</mark> en le Bitcoin et tout autre cryptomonnaies.</p>
+			<h3>Des caractéristiques attrayante</h3>
+			<p>Une seconde raison et celle de <mark
+					class="highlight-orange">l’appât du gain</mark>, effectivement le Bitcoin étant extrêmement volatile
+				et ayant un nombre limité de bitcoin comme l’or sur terre, lui procure une<mark
+					class="highlight-orange"> tendance haussière à long terme</mark> pour le moment. </p>
+			<p>De plus l’arrivé des <mark
+					class="highlight-orange">ICO « Initial coin offering »</mark> étant des levais de fond via des
+				cryptomonnaies est venue soutenir cette tendance. A la vue de ces caractéristiques énormément <mark
+					class="highlight-orange">d’investisseur/trader</mark> se sont intéressée à lui afin d’y généré du
+				bénéfice.</p>
+			<p>Une troisième raison du succès du bitcoin est sa <mark
+					class="highlight-orange">sureté</mark> comme expliqué dans <mark class="highlight-pink">(METTRE 2eme
+					ARTICLE EN LIEN)</mark> <strong>le bitcoin est tout simplement inviolable grâce à ce système de
+					blockchain et de cryptographie empêchant</strong><strong><mark class="highlight-orange"> la double
+						dépense</mark></strong>, ce qui permet d’avoir une entière confiance en cette monnaie. De plus
+				cette technologie de décentralisation a permis de donnés naissance à se qu’on appelle le <mark
+					class="highlight-orange">“web 3.0”</mark>. Le Bitcoin n’est pas seulement une cryptomonnaies parmi
+				tant d’autre mais il est <mark class="highlight-orange">l’origine</mark> d’autre projet de
+				cryptomonnaies tel que Ethereum, Solana et beaucoup d’autre.</p>
+			<h3>Va t-il garder son succès ?</h3>
+			<p>Aujourd’hui bien qu’énormément de cryptomonnaies se
+				basent sur la technologie cryptographique du Bitcoin, beaucoup de ces cryptomonnaies se tourne vers une
+				nouvelle technologie de validation le <mark class="highlight-orange">Proof-of-Stake </mark>ou<mark
+					class="highlight-orange"> POS</mark>. Cette nouvelle technologie est bien moins consommatrice
+				d’énergie face au <mark class="highlight-orange">Proof-of-Work</mark> du Bitcoin et donc bien plus
+				intéressante.
+			<div class="alinea">
+				<p><em>“Le Bitcoin est au cryptomonnaies ce qu’est
+						l’or est au métaux” </em>Lacombe—Fabre Titouan</p>
+			</div>
+			</p>
+			<p>Le Bitcoin n’a donc pas seulement du succès pour ce
+				qu’il est, mais aussi <mark class="highlight-orange">l’idéologie</mark> et la <mark
+					class="highlight-orange">technologie</mark> qu’il apporte.</p>
+			<p>
+			</p>
+
+
+			<h1>Quelle place occupe le bitcoin parmi les titres
+				spéculatifs ?</h1>
+			<p>Pour parler des titres spéculatifs, il faut tout
+				d’abord établir qu’est-ce qu’un titre spéculatif. Pour cela, nous allons définir au préalable ce qu’est
+				<mark class="highlight-orange">la spéculation.</mark></p>
+			<h3>Qu’est ce que la spéculation ?</h3>
+			<p>Le concept de spéculation est encore très débattu.
+				Étymologiquement, c’est une opération qui consiste à acheter un bien en vue de <mark
+					class="highlight-orange">réaliser un bénéfice</mark> de sa revente ultérieure. Toutefois, dans le
+				langage courant, cela s’apparente plutôt à un profit à <mark class="highlight-orange">court terme et à
+					un gain rapide</mark>. Nous allons donc considérer que le la spéculation englobera <mark
+					class="highlight-orange">les gains à court et long termes</mark> afin de répondre plus simplement à
+				cette question.</p>
+			<div class="column-list">
+				<div style="width:50%" class="column">
+					<p>Il existe<mark class="highlight-orange"> 3
+							grandes classes d’actifs </mark>:
+					<div class="alinea">
+						<p><strong>Les obligations,</strong> qui sont
+							des <mark class="highlight-orange">dettes</mark>, est le type d’actif le plus représenté
+							dans le monde. Les obligations sont notées par des lettres de la moins risquée à la plus
+							risquée, comme nous pouvons le voir sur le tableau ci-contre, qui représente le classement
+							établi par l’entreprise <mark class="highlight-orange">Standard &amp; Poor&#x27;s</mark>. Ce
+							tableau est un classement par risques des obligations. Plus la note du débiteur est basse,
+							<mark class="highlight-orange">plus le taux d’intérêt</mark> de l’obligation demandé par le
+							créditeur est élevé.</p>
+						<p>Nous pouvons voir que, d’après ce tableau,
+							les obligations définies comme <mark class="highlight-orange">“spéculatives”</mark> se
+							trouvent à partir du niveau BB+. Plus le niveau descendra, plus il sera considéré comme
+							spéculatif. En dessous de CCC, le risque est tel que peu d’investisseurs leurs accordent de
+							la confiance.</p>
+						<p>
+						</p>
+					</div>
+					</p>
+				</div>
+				<div style="width:50%" class="column">
+					<table class="simple-table">
+						<tbody>
+							<tr>
+								<td id="arq@">Signification de la note</td>
+								<td
+							</tr>
+							<tr>
+								<td id="arq@">Première qualité</td>
+								<td id="@uet">AAA</td>
+							</tr>
+							<tr>
+								<td id="arq@">Haute qualité</td>
+								<td id="@uet">AA+</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">AA</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">AA-</td>
+							</tr>
+							<tr>
+								<td id="arq@">Qualité moyenne supérieur</td>
+								<td id="@uet">A+</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">A</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">A-</td>
+							</tr>
+							<tr>
+								<td id="arq@">Qualité moyenne inférieur</td>
+								<td id="@uet">BBB+</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">BBB</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">BBB</td>
+							</tr>
+							<tr>
+								<td id="arq@">Spéculatif</td>
+								<td id="@uet">BB+</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">BB</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">BB-</td>
+							</tr>
+							<tr>
+								<td id="arq@">Très spéculatif</td>
+								<td id="@uet">B+</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">B</td>
+							</tr>
+							<tr>
+								<td id="arq@"></td>
+								<td id="@uet">B-</td>
+							</tr>
+							<tr>
+								<td id="arq@">Risque élevé</td>
+								<td id="@uet">CCC+</td>
+							</tr>
+							<tr>
+								<td id="arq@">Ultra spéculatif</td>
+								<td id="@uet">CCC</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<p><strong>Les actions</strong> sont des parts de
+				sociétés commerciales. Elles n’ont pas de classement définissant leur <mark
+					class="highlight-orange">“risque”</mark> comme pour les obligations, mais il existe des indices
+				comme le <mark class="highlight-orange">S&amp;P500</mark>, créé par <mark
+					class="highlight-orange">Standard &amp; Poor’s</mark>. Cet indice<mark class="highlight-orange">
+				</mark>représente les 500 plus grandes sociétés commerciales américaines cotées en bourse. Il existe
+				aussi l’indice du <mark class="highlight-orange">CAC40</mark> pour la France, qui représente les 40 plus
+				grandes sociétés commerciales françaises. Elles peuvent aussi être classées par secteur comme le<mark
+					class="highlight-orange"> Nasdaq</mark>,<mark class="highlight-orange"> </mark>représentant le
+				secteur de la Tech.
+			<div class="alinea">
+				<p><strong>Attention</strong>, ces indices ne
+					garantissent en aucun cas la qualité des sociétés commerciales qui en font parties. Cependant, ces
+					indices démontrent d’une certaine qualité de la part des sociétés commerciales.</p>
+			</div>
+			</p>
+			<div class="column-list">
+				<div style="width:68.75%" class="column">
+					<p><strong>Les produits dérivés</strong> sont les
+						actifs les plus compliqués à décrire parce qu’ils peuvent prendre presque toutes les formes :
+						autant obligation qu’action, ou les deux. D’un point de vue schématique, nous pouvons dire que
+						les produits dérivés se situent entre les obligations et les actions. Le schéma ci-dessous
+						l’explique.
+					<div class="alinea">
+						<figure class="image"><a
+								href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Titre_spec_schma_2.svg"><img
+									style="width:768px"
+									src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/Titre_spec_schma_2.svg" /></a>
+						</figure>
+					</div>
+					</p>
+				</div>
+				<div style="width:31.249999999999993%" class="column">
+					<figure class="image"><a
+							href="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/obligation_2.svg"><img
+								style="width:192px"
+								src="SAE%20Bitcoin%20cc4cf0599562483681e5616714cf41dc/obligation_2.svg" /></a></figure>
+				</div>
+			</div>
+			<h3>Qu’en est-il du Bitcoin ?</h3>
+			<p>La spéculation peut donc s’effectuer sur ces trois
+				types d’actifs. Mais qu’en est-il du <mark class="highlight-orange">Bitcoin </mark>? Dans quelle
+				catégorie se trouve-t-il ?
+			<div class="alinea">
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc">Le Bitcoin n’est pas une <mark
+							class="highlight-orange">obligation</mark> dans le sens qu’il ne verse pas de l’argent à des
+						périodes fixes.</li>
+				</ul>
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc">Le Bitcoin n’est pas une ou plusieurs <mark
+							class="highlight-orange">actions</mark> car il n’est pas une société commerciale.</li>
+				</ul>
+				<ul class="bulleted-list">
+					<li style="list-style-type:disc">Le Bitcoin ne peut pas être un <mark
+							class="highlight-orange">produit dérivé</mark> car il ne remplit pas les conditions
+						nécessaires ne ressemblant aucunement à une obligation ou une action.</li>
+				</ul>
+			</div>
+			</p>
+			<p>Le Bitcoin fait parti d’une autre catégorie comme son
+				nom l’indique : <mark class="highlight-orange">les monnaies.</mark> Malgré tout, en classant le Bitcoin
+				dans cette catégorie, un problème se pose. La <mark class="highlight-orange">définition
+					économique</mark> d’une monnaie est la suivante : c’est un <mark
+					class="highlight-orange">instrument</mark> qui sert à effectuer des échanges, et non un <mark
+					class="highlight-orange">actif financier</mark>. Autrement dit, avec une monnaie, nous sommes sensés
+				acheter des actifs financiers et non pour s’en servir pour <mark class="highlight-orange">générer un
+					profit</mark>.
+				Cet état de fait est renforcé par l’existence<mark class="highlight-orange"> des banques
+					centrales</mark> dont le rôle est de limiter la <mark class="highlight-orange">fluctuation des
+					monnaies</mark>, c’est à dire de les rendre <mark class="highlight-orange">stables</mark>.</p>
+			<p>Le Bitcoin ne suit donc pas cette définition car il
+				est, à l’heure actuelle, en très grande majorité utilisé pour faire du profit et donc <mark
+					class="highlight-orange">spéculer</mark> ce qui contribue à entretenir une très grande <mark
+					class="highlight-orange">volatilité </mark>du Bitcoin,<mark class="highlight-orange">
+				</mark>empêchant ainsi de faire des transactions à but <mark class="highlight-orange">“non
+					lucratif”</mark>. Aujourd’hui la France traite légalement le Bitcoin et les cryptomonnaies comme des
+				actions et applique les même taxes, à hauteur de <mark class="highlight-orange">30%</mark> dés un
+				retraits supérieur à 300€ par an.</p>
+			<p>Le Bitcoin n’est pas forcément voué à devenir stable,
+				comme expliqué dans <mark class="highlight-pink">(ARTICLE 2)</mark>. Le nombre de Bitcoin est limité à
+				<mark class="highlight-orange">21 millions</mark>, le rendant d’autant plus volatile car cela augmente
+				sa rareté. Le rapprochement entre <mark class="highlight-orange">l’or</mark> et le <mark
+					class="highlight-orange">Bitcoin</mark> devient donc plutôt évident sachant que l’or est en quantité
+				limitée sur terre.
+			<div class="alinea">
+				<p><em>“Le Bitcoin c’est l’or pour les nerds”
+					</em>Stephen Colbert, comédien.</p>
+			</div>
+			</p>
+			<h3>Quelle est l’avenir du Bitcoin parmi les titres
+				spéculatifs ?</h3>
+			<p>Le Bitcoin est tout de même en train d’acquérir une
+				position non pas de stabilité, mais une <mark class="highlight-orange">réelle relation</mark> entre lui
+				et les autres cryptomonnaies. En effet, aujourd’hui, le Bitcoin est comme un <mark
+					class="highlight-orange">chef d’orchestre</mark> pour les autres cryptomonnaies. </p>
+			<p>Il donne donc une <mark
+					class="highlight-orange">dynamique de marchés</mark> aux <mark
+					class="highlight-orange">altcoins</mark>, qui vont plus ou moins suivre cette même tendance. Par
+				ailleurs, le Bitcoin évolue en <mark class="highlight-orange">corrélation</mark> avec le<mark
+					class="highlight-orange"> Nasdaq</mark>, voire en total corrélation, pendant de <mark
+					class="highlight-orange">courte </mark>ou <mark class="highlight-orange">moyenne</mark> période.
+				D’après Nicolas Chéron, stratégiste marchés, le Bitcoin est en en train de prendre une forme similaire à
+				un indice tel que le Nasdaq.
+			<div class="alinea">
+				<p><em>“Le Bitcoin est aux altcoins ce qu’est les
+						indices sont au actions”</em> Nicolas Chéron, stratégiste marchés.</p>
+			</div>
+			</p>
+			<p>D’après nous, le Bitcoin n’est donc pas voué à devenir
+				une <mark class="highlight-orange">monnaie stable</mark> et ne servira sûrement jamais à faire des
+				échanges de biens ou de services comme le permettent <mark class="highlight-orange">les devises
+					étatiques</mark>. Néanmoins, certaines cryptomonnaies comme le <mark
+					class="highlight-orange">Tether</mark> ou le <mark class="highlight-orange">DAI</mark>, plus
+				couramment appelé <mark class="highlight-orange">stablecoins</mark>, sont prévues pour cela et utilisent
+				des technologies liées à la blockchain pour garder un taux de fluctuation très bas.</p>
+			<p>
+			</p>
+
+			<h1>Quelles sont les perspectives d’avenir du Bitcoin
+				compte tenu des moyens de le contrôler ?</h1>
+			<p>La régulation du Bitcoin, et de toutes les
+				cryptomonnaies autres que des <span style="border-bottom:0.05em solid">CBDC</span>, est un sujet très
+				complexe, à tel point que les instances de régulation bancaire et financière ont encore des difficultés
+				à trouver une méthode efficace. Deux instances principales de régulation veulent contrôler les
+				cryptomonnaies,</p>
+			<h3>Les Banques Centrale</h3>
+			<p>Pour comprendre pourquoi les banques centrales veulent
+				contrôler et réguler les cryptomonnaies, il faut tout d’abord savoir quelle est l’utilité d’une banque
+				centrale. Les banques centrales vont avoir trois rôles majeurs :</p>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Garantir la stabilité des prix </strong>(en minimisant
+					l’inflation et la déflation à environ 2%),</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Émettre de la monnaie fiduciaire </strong>(c’est-à-dire mettre
+					en circulation des pièces et billets), on parle aussi de battre la monnaie,</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Prêter de l’argent aux banques commerciales.</strong></li>
+			</ul>
+			<p>Réguler les cryptomonnaies est donc loin d’être aisée
+				sachant qu&#x27;elles sont nativement décentralisées. Cette décentralisation empêche la garantie d’un
+				cours stable comme l’effectue les banques centrales sur les devises qu’elles émettent. Les banques
+				centrales ne peuvent créer de la monnaies ou en bruler pour réguler le cours des cryptomonnaies. </p>
+			<p>Certaines banques centrales ont créé des <mark
+					class="highlight-orange"><strong>CBDC</strong></mark>, ”Central Bank Digital Currency” ou
+				&quot;<mark class="highlight-orange">Monnaie Digitale de Banque Centrale</mark>&quot; (MDBC) en
+				français. Une CBDC est une cryptomonnaies directement émise par une banque centrale, apportant tout les
+				avantages d’une devise étatique.</p>
+			<h3>Les <strong>É</strong>tats </h3>
+			<p>A l’heure d’aujourd’hui chaque transaction autre qu’en
+				liquide, que vous effectuez sont contrôlés par votre gouvernement, via <mark
+					class="highlight-orange">vos banques</mark>. En effet pour éviter les transactions illégales le
+				gouvernement demande aux banques de vérifier si vos transactions respectent bien la lois.</p>
+			<p>Cette régulation a pour principale objectif d’éviter
+				<mark class="highlight-orange">l’évasion fiscale</mark> et la vente <mark class="highlight-orange">de
+					produits illicites</mark>. Mais aussi de <strong>nous protéger, nous consommateurs</strong>, face
+				aux <mark class="highlight-orange">arnaques</mark>, et de nous donner plus de droits face aux géants
+				d’internet, comme le droit de <mark class="highlight-orange">rétraction</mark> en cas d’achats
+				malencontreux. </p>
+			<p>Mais il serait<strong> impossible</strong> d’appliquer
+				ces régulations sur des cryptomonnaies comme le <mark class="highlight-orange">Bitcoin</mark> à cause de
+				leurs caractéristiques comme :
+			<div class="alinea">
+				<p><strong>L’anonymat</strong>, étant total il est
+					impossible pour un gouvernement de retrouver les personnes derrière une transaction et donc de
+					vérifier la <mark class="highlight-orange">légalité</mark> de cette même transaction.</p>
+				<p><strong>Le Peer-to-Peer,</strong> empêche de <mark
+						class="highlight-orange">récupérer</mark> votre argent une fois la transaction effectuer, même
+					si c’était une erreur.</p>
+			</div>
+			</p>
+			<p>Aujourd’hui encore aucune méthode n’a été trouvée pour
+				régler ces deux problème <mark class="highlight-orange">sans empiété</mark> sur la<mark
+					class="highlight-orange"> liberté</mark> que veulent donner les cryptomonnaies.</p>
+
+					
+			<h1>Bibliographie </h1>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://www.coinbase.com/fr/learn/crypto-basics">https://www.coinbase.com/fr/learn/crypto-basics</a>
+					<p><a
+							href="https://www.coinbase.com/fr/learn/crypto-basics/what-is-a-protocol">https://www.coinbase.com/fr/learn/crypto-basics/what-is-a-protocol</a>
+					</p>
+					<p><a
+							href="https://www.coinbase.com/fr/learn/crypto-basics/what-is-bitcoin">https://www.coinbase.com/fr/learn/crypto-basics/what-is-bitcoin</a>
+					</p>
+				</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://coinmarketcap.com/alexandria">https://coinmarketcap.com/alexandria</a></li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://www.futura-sciences.com/tech/questions-reponses/cryptomonnaies-bitcoin-btc-il-toujours-si-populaire-16032/">https://www.futura-sciences.com/tech/questions-reponses/cryptomonnaies-bitcoin-btc-il-toujours-si-populaire-16032/</a>
+				</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://www.youtube.com/watch?v=du34gPopY5Y&amp;list=LL&amp;index=6">https://www.youtube.com/watch?v=du34gPopY5Y</a>
+				</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin">https://usbeketrica.com/fr/quel-est-l-impact-ecologique-reel-de-bitcoin</a>
+				</li>
+			</ul>
+			<p>
+			</p>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://n26.com/fr-fr/blog/banque-centrale">https://n26.com/fr-fr/blog/banque-centrale</a>
+				</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/">https://www.comprendrelespaiements.com/les-mecanismes-de-compensation-et-de-reglement/</a>
+				</li>
+			</ul>
+			<ul class="bulleted-list">
+				<li style="list-style-type:disc"><a
+						href="https://cryptoast.fr/bitcoin-minage-consommation-energie-ecologie/">https://cryptoast.fr/bitcoin-minage-consommation-energie-ecologie/</a>
+				</li>
+			</ul>
+			<figure class="link-to-page"><a
+					href="https://www.notion.so/html-css-f41ba88943c04495b6a0a5b5065c66ad">html/css</a></figure>
+			<p>
+			</p>
+		</div>
+	</article>
+</body>
+
+</html>
