@@ -26,7 +26,7 @@
                 <!-- <img src="./img/Bitcoin.svg.png" alt="Logo Bitcoin"> -->
             </div>
             <ol>
-                <li>
+                <li class="selected_article">
                     <a href="/article-1">Explications</a>
                     <div class="sous_menu">
                         <ul>
@@ -57,7 +57,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="selected_article">
+                <li>
                     <a href="#">Annexe</a>
                     <div class="sous_menu">
                         <ul>
@@ -69,30 +69,32 @@
                 </li>
             </ol>
         </nav>
-        <div class="apropos">
-            <h1>Qui somme nous :</h1>
-            <div>
-                <div class="personne">
-                    <img src="./img/image_profile_titouan.JPG" alt="Image de profile">
-                    <div>
-                        <h4>Théo Vidal</h4>
-                        <p>Etudiant en première années à l'IUT de Nice en informatique. Cofondateur d'Informento Corp</p>
-                        <div>Contact proffessionel :<a href="mailto:titouan.lacombe---fabre@etu.univ-cotedazur.fr"> Mail</a></div>
-                        <div>Portefolio : <a href="#">https:/portefolio/titouan</a></div>
-                    </div>
-                </div>
-                <div class="barre"></div>
-                <div class="personne">
-                    <img src="./img/image_profile_titouan.JPG" alt="Image de profile">
-                    <div>
-                        <h4>Titouan Lacombe--Fabre</h4>
-                        <p>Etudiant en première années à l'IUT de Nice en informatique. Cofondateur d'Informento Corp</p>
-                        <div>Contact proffessionel :<a href="mailto:titouan.lacombe---fabre@etu.univ-cotedazur.fr"> Mail</a></div>
-                        <div>Portefolio : <a href="#">https:/portefolio/titouan</a></div>
-                    </div>
+        <h1>Cours du Bitcoin</h1>
+
+        <div class="home_intro">
+            <h3>Valeur du Bitcoin en Euros (24h)</h3>
+            <div
+                style="height:560px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px; width: 100%;">
+                <div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe
+                        src="https://widget.coinlib.io/widget?type=chart&theme=light&coin_id=859&pref_coin_id=1506"
+                        width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0"
+                        border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div>
+                <div
+                    style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;">
+                    <a href="https://coinlib.io" target="_blank"
+                        style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency
+                        Prices</a>&nbsp;by Coinlib
                 </div>
             </div>
         </div>
+        <div class="home_intro">
+            <h3>Cours d'autres cryptomonnaies</h3>
+            <iframe width="100%" height="400"
+                src="https://www.strategie-bourse.com/widget/tableau-cours.php?langue=fr&type_actif=crypto&couleur_entete=&background=FFF"
+                frameborder="0"></iframe>
+        </div>
+
+
         <section class="selection_article">
             <h2>Tous nos articles</h2>
             <div class="carousel">

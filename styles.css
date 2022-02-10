@@ -46,7 +46,7 @@ html {
 } */
 
 body {
-    background-color: var(--bg-color);
+    background: url(./img/bacground.png) repeat ;
     font-family: 'Inter', sans-serif;
     border: 0;
     margin: 0;
@@ -57,6 +57,7 @@ main {
     width: 100%;
     max-width: 1200px;
     background-color: var(--item-bg-color);
+    box-shadow: var(--shadow_style_left);
 }
 
 h1 {
@@ -353,24 +354,23 @@ article a {
 
 }
 
-
-.sous_article > a > span {
+.sous_article > a span {
     font-size: 15px;
     color: var(--label);
     margin-top: 8px;
     display: block;
 }
 
-.sous_article > a > h3 {
+.sous_article > a h3 {
     margin-top: 10px;
     margin-bottom: 15px;
-    font-size: 22px;
+    font-size: 21px;
     width : 98%;
-    min-height: 105px;
+    min-height: 100px;
     color: var(--main-text-color)
-    
 }
-.sous_article > a > p {
+
+.sous_article > a p {
     font-size: 13px;
     width: 100%;
     text-align: center;
@@ -472,10 +472,10 @@ h1, .article_title, .citation, nav {
     padding: 40px 32px;
     margin-top: 40px;
     margin-bottom: 40px;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 15px;
     box-shadow: var(--shadow_style_left);
     font-size: 18px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
     border-left: 4px solid var(--main-style-color);
     background: var(--item-bg-color);
 }
@@ -494,20 +494,21 @@ h1, .article_title, .citation, nav {
 /*//////// Lien vers autre article /////////*/
 
 .lien_article {
-    text-decoration: underline var(--main-style-color);
+    text-decoration: underline var(--label);
     color: transparent;
-    background: linear-gradient(180deg, var(--main-style-color) 50%, var(--main-text-color) 50%, var(--main-text-color) 100%);
+    background: linear-gradient(180deg, var(--main-style-color) 50%, var(--label) 50%, var(--label) 100%);
     background-size: 100% 44px;
     
     font-weight: 500;
     -webkit-background-clip: text;
     background-position-y: -22px;
-    transition: background-position-y 1s;
+    transition: background-position-y 1s, text-decoration-color 1s;
 }
 
 
 .lien_article:hover{
     background-position-y: -44px;
+    text-decoration-color: var(--main-style-color);
 }
 
 
@@ -547,7 +548,13 @@ Article p {
     width:40% ;
 } 
 
-article img {
+.image img{
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+image img {
     height : 100%;
     width : 100%;
     object-fit: cover;
@@ -874,6 +881,135 @@ table tr:last-of-type td:last-of-type{
 #img_horizontale {
     display : none;
 }
+
+/* ///////////////////////////////////////////////////////////// */
+/* //////////////          Bibliographie      ///////////////// */
+/* /////////////////////////////////////////////////////////// */
+.biblio h1 {
+    margin-bottom: 35px;
+}
+
+.biblio h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.biblio > ul {
+    margin-left : 100px;
+    font-size: 22px;
+    font-weight: bold;
+    list-style: none;
+    margin-top: 15px;
+}
+
+.biblio_title {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.biblio a {
+    word-break: break-all;
+}
+
+.biblio > ul > li  {
+    box-shadow: var(--shadow_style_left);
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 90%;  
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-left: 4px solid var(--main-style-color); 
+}
+
+.biblio > ul > li {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.biblio > ul > li > ul  {
+    margin-top: 7px;
+    list-style: none;
+    font-size: 19px;
+}
+
+.biblio > ul ul > li {
+    margin-top : 5px;
+}
+
+/* .biblio > ul ul > li > a {
+    color: var(--main-style-color-text);
+} */
+
+.biblio > ul ul > li::before {
+    list-style: none;
+    position: absolute;
+    margin-left: -20px;
+    content: '⇨  ';
+}
+
+/* ///////////////////////////////////////////////////////////// */
+/* //////////////          A-propos           ///////////////// */
+/* /////////////////////////////////////////////////////////// */
+
+.apropos > div {
+    width: 95%;
+    margin : 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.apropos .barre {
+    width: 3px;
+    height : 400px;
+    border-radius : 1px;
+    background-color: var(--main-style-color);
+}
+
+.personne {
+    padding: 35px;
+}
+
+.personne > div {
+    margin-left : 30px;
+}
+
+.personne h4 {
+    font-size: 20px;
+    margin: 0;
+    margin-top: 12px;
+}
+
+div > .personne {
+    padding: 15px;
+    margin: 5px;
+    margin-top: 30px;
+    width: 40%;
+    border-radius : 25px;
+    box-shadow: var(--shadow_style_right);
+}
+
+.personne img {
+    width: 100%;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (max-width: 768px){
