@@ -63,7 +63,7 @@ main {
 h1 {
     margin-left: 100px;
     margin-bottom: 50px;
-    font-size: 85px;
+    font-size: 70px;
 }
 article > h1 {
     margin-left: 0;
@@ -98,16 +98,47 @@ nav {
     box-shadow : 0px 7px 25px 0 var(--shadow-color);
 }
 
-nav > div {
+nav > a {
     height: 100%;
-    width: 100px;
+    width: 60px;
+    transition: width 1s ;
 }
 
-nav > div > img {
-    margin : 5px;
-    height: 100%;
-    width: auto;
+/* Logo retour menu principal */
+nav > a > span {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    margin-left: 60px;
+    margin-top: -46px;
+    font-size: 18px;
+    color: var(--main-style-color);
+    font-weight: 500;  
+    transition: opacity 1.2s, margin-left 1.2s;
 }
+
+nav > a:hover {
+    width: 195px;  
+    color: var(--main-style-color);
+    border-bottom: 3px solid var(--main-style-color);
+}
+nav > a:hover > span {
+    opacity: 1;
+    margin-left: 70px;
+}
+
+nav > a > img {
+    margin : 5px;
+    height: calc(100% - 5px);
+    width: auto;
+    transition: height 0.5s;
+}
+
+nav a:hover img {
+    height: calc(100% - 6px);
+}
+
+
 
 nav > ol {
     display: flex;
@@ -137,6 +168,15 @@ nav > ol > li a {
 ol > li:hover > .sous_menu {
     display: block;
 }
+
+#hamburger {
+    display: none;
+}
+
+label[for="hamburger"] {
+    display: none;
+}
+
 
 .sous_menu {
     display: none;
@@ -169,6 +209,10 @@ ol > li:hover > .sous_menu {
 
 .sous_menu ul {
     list-style-type: none;
+}
+
+.sous_menu > ul > li {
+    width : 85%;
 }
 
 .sous_menu > ul > li:nth-of-type(2n+1){
@@ -402,7 +446,7 @@ h1, .article_title, .citation, nav {
 }
 
 .article_title {
-    font-size: 32px;
+    font-size: 31.5px;
     font-family: 'Inter', sans-serif;
     font-weight: 600
 }
@@ -903,9 +947,9 @@ table tr:last-of-type td:last-of-type{
 }
 
 .biblio_title {
-    border: none;
-    padding: 0;
-    box-shadow: none;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
 }
 
 .biblio a {
@@ -1010,9 +1054,63 @@ div > .personne {
 
 
 
-
-
 @media screen and (max-width: 768px){
+
+    /* .sous_menu {
+        display: block;
+    }
+    nav > ol > li > a {
+        display: none
+    } */
+    label > svg > rect {
+        fill: gray;
+    }
+    
+    label[for="hamburger"] {
+        display: block;
+        position: absolute;
+        right: 10px;
+        border-radius: 10px;
+    }
+    #hamburger {
+        display: none;
+    }
+    nav > ol{
+        display: none;
+    }
+    #hamburger:checked ~ ol{
+        display: block;
+    }
+    #hamburger:checked ~ label > svg > rect{
+        fill: var(--main-style-color);
+    }
+    #hamburger:checked ~ ol > li > div{
+        display: block;
+    }
+    #hamburger ~ ol > a{
+        display: none;
+    }
+    #hamburger ~ ol > li > a{
+        display: none;
+    }
+    #hamburger:checked ~ ol > li{
+        height: 315%;
+    }
+    #hamburger:checked ~ ol > li:first-child{
+        margin-top: 21px
+    }
+    #hamburger:checked ~ ol ul::before{
+        height: 200px;
+        animation: none;
+    }
+    .sous_menu > ul > li > a {
+        background: none;
+        color: black
+    }
+    .sous_menu ul {
+        box-shadow: none;
+    }
+   
     .Article_Principal {
         width : 90%;
     }
@@ -1032,11 +1130,8 @@ div > .personne {
         width: 100% !important;
     }
 
-    .carousel {
-        display: block;
-    }
     .carousel > .sous_article {
-        width: auto;
+        width: 100%;
     }
    
     .home_intro a {
@@ -1053,5 +1148,22 @@ div > .personne {
 
     #img_vertical {
         display : none;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+    .biblio > ul {
+        margin-left: 0;
+    }
+
+    .apropos > div {
+        display : block;
+    }
+    .apropos > div > div {
+        width: auto;
+    }
+    .barre {
+        display :none;
     }
 }
